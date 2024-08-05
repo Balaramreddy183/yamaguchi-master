@@ -50,6 +50,9 @@ export const routes: Routes = [
     {
         path: 'admin-testimonials', component: TestimonialsComponent
     },
+    {
+        path:'**', component:HomeComponent
+    }
 
 
 ];
