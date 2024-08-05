@@ -1,0 +1,140 @@
+<!-- Header Starts here  -->
+
+<div class="top-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center">
+                <div class="header-sections-main-bg">
+                    <div class="header-sections-sub-bgs">
+                        <i class="bi bi-telephone"></i>
+                        <a href="tel:+919347057560" class="header-contact-info">+91-9347057560</a>
+                    </div>
+                    <div class="header-sections-sub-bgs">
+                        <i class="bi bi-clock"></i>
+                        <span class="header-contact-info">EVERYDAY 5.30am - 8am &</span>
+                        <span class="header-contact-info">4.30pm - 7.00pm</span>
+                    </div>
+                    <div class="header-sections-sub-bgs">
+                        <i class="bi bi-envelope"></i>
+                        <a href="mailto:karateacademyyamaguchi@gmail.com" class="header-contact-info">karateacademyyamaguchi&#64;gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="header-contact-icons-bg">
+                    <div class="header-contact-icons-sub">
+                        <a href="https://www.instagram.com/yamaguchi_karate_academy_?igsh=Y3lxYnBmY2l0YnE3" class="social-icon" title="Instagram" target="_blank">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://maps.app.goo.gl/5mJW1ZWci9SBXhrA9" target="_blank" class="social-icon" title="Dojo Location">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </a>
+                        <!-- <a href="https://www.facebook.com/yamaguchikarateacademy" class="social-icon" title="Facebook" target="_blank">
+                            <i class="bi bi-facebook"></i>
+                        </a> -->
+                        <a href="https://wa.me/+919347057560?text=Hello%2C%20I%20want%20to%20book%20a%20free%20consultation%20for%20Yamaguchi%20Karate%20Academy" class="social-icon" title="WhatsApp" target="_blank">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn header-section-contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Free Consulting
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header modal Starts  -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Free Consultation</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="contactForm" (ngSubmit)="sendMessage()" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" formControlName="name" class="form-control" placeholder="Your Name">
+                        <small class="text-danger" *ngIf="f['name'].touched && f['name'].invalid">
+                            Name is required
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Your Email">
+                        <small class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+                            Please enter a valid email
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" formControlName="phone" class="form-control" placeholder="Your Phone Number">
+                        <small class="text-danger" *ngIf="f['phone'].touched && f['phone'].invalid">
+                            Please enter a valid phone number
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="Consultation Subject">
+                        <small class="text-danger" *ngIf="f['subject'].touched && f['subject'].invalid">
+                            Subject is required
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" formControlName="message" class="form-control" rows="4" placeholder="Your Message"></textarea>
+                        <small class="text-danger" *ngIf="f['message'].touched && f['message'].invalid">
+                            Message is required
+                        </small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-submit" (click)="sendMessage()" [disabled]="contactForm.invalid">Send Message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header modal ends here  -->
+<!-- Header ends here  -->
+
+<!-- Navbar Starts here  -->
+<nav class="navbar navbar-expand-lg bg-light border-bottom border-body sticky-top">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home">
+            <img src="../../../../assets/images/nav_logo.jpg" alt="Ymca" class="nav-logo" loading="lazy">
+        </a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar($event)" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [class.show]="isNavbarOpen" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active" (click)="closeNavbar()">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/about-us" routerLinkActive="active" (click)="closeNavbar()">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/services" routerLinkActive="active" (click)="closeNavbar()">SERVICES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/gallery" routerLinkActive="active" (click)="closeNavbar()">GALLERY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="closeNavbar()">CONTACT US</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar ends here  -->
+
+<!-- Overlay for closing navbar -->
+<div class="navbar-overlay" *ngIf="isNavbarOpen" (click)="closeNavbar()"></div>

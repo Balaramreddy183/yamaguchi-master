@@ -1,0 +1,97 @@
+.top-header {
+    height: 5vh;
+    background-color: #1a2f4e;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-family: "open sans", sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+
+}
+
+.header-contact-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+}
+
+.header-contact-details ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    gap: 5px;
+
+}
+
+.header-social-media-icons {
+    margin-left: auto;
+}
+
+.header-social-media-icons ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    gap: 20px;
+}
+
+.header-section-main-bg {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.header-contact-details .bi {
+    color: #e80040;
+}
+
+.header-section-contact-btn {
+    background-color: #b50032;
+    border-radius: 0 !important;
+    color: #ffffff;
+}
+
+.header-section-contact-btn:hover {
+    background-color: #b50032;
+}
+
+/* navbar section starts here  */
+
+.nav-item {
+    font-size: 12px;
+    line-height: 18.5714px;
+    width: max-content;
+    font-weight: 600;
+
+}
+
+.nav-item .active {
+    background-color: #1a2f4e;
+    color: #ffffff;
+    border-radius: 30px;
+   
+
+
+}
+
+.nav-link {
+    border-radius: 30px;
+    padding: 0.5rem 1rem !important;
+    color: #333333;
+    font-family: "open sans", sans-serif;
+}
+
+.nav-link:hover {
+    background-color: #1a2f4e;
+    color: #ffffff !important;
+    border-radius: 15px;
+
+}
+
+.logout-btn:hover {
+    background-color: #b50032;
+}

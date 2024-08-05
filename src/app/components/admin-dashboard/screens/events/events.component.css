@@ -1,0 +1,90 @@
+.main-bg {
+    min-height: 100vh;
+    max-height: 100%;
+}
+
+.title-text {
+    font-family: "droid serif", sans-serif;
+    font-size: 3ch;
+    color: #333333;
+    text-align: center;
+    font-weight: 600;
+}
+
+.title-text span {
+    color: #e80040;
+}
+
+.table-image {
+    height: 100px;
+}
+
+.action-icons {
+
+    color: brown;
+
+    height: max-content;
+}
+
+.action-icons .btn {
+    margin: 5px;
+}
+
+.table th,
+td {
+    text-align: center;
+
+}
+
+.sub-modal-bg {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-body {
+    padding: 2em;
+}
+
+.sub-modal-bg label {
+    font-weight: bold;
+}
+
+.modal-header {
+
+    color: #ffffff;
+    background-color: #e80040;
+}
+
+.modal-header .modal-title {
+    font-family: "droid serif", sans-serif;
+}
+
+.modal-footer {
+    justify-content: space-between;
+}
+
+
+.title {
+    max-width: 150px;
+}
+
+.image {
+    max-width: 300px;
+}
+
+.description {
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.add-new-btn{
+    position: relative;
+
+}
+
+.add-new-btn .btn-success {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}

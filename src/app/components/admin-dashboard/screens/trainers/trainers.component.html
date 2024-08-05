@@ -1,0 +1,154 @@
+<app-header></app-header>
+
+<div class="main-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive pt-3 ">
+                    <p class="title-text">View <span>Trainers</span> Here</p>
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="table-light ">
+                            <tr>
+                                <th scope="col">SN.O</th>
+                                <th scope="col">Trainer Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Qualification</th>
+                                <th scope="col">Experience</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>
+                                    <img src="../../../assets/images/karate-images/asset 11.jpeg" alt="image1" class="table-image">
+                                </td>
+                                <td>R.K Krishna</td>
+                                <td>Grand Master</td>
+                                <td>30 Years</td>
+                                <td class="action-icons">
+                                    <a class=" btn btn-sm btn-outline-warning">
+                                        Edit <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class=" btn btn-sm btn-outline-danger">
+                                        Delete
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>
+                                    <img src="../../../assets/images/karate-images/asset 10.jpeg" alt="image1" class="table-image">
+                                </td>
+                                <td>Krishna</td>
+                                <td>Master Trainer</td>
+                                <td>10 years</td>
+                                <td class="action-icons">
+                                    <a class=" btn btn-sm btn-outline-warning">
+                                        Edit
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class=" btn btn-sm btn-outline-danger">
+                                        Delete
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>
+                                    <img src="../../../assets/images/karate-images/asset 9.jpeg" alt="image1" class="table-image">
+                                </td>
+                                <td>Ravi </td>
+                                <td>Champion</td>
+                                <td>25 Years</td>
+                                <td class="action-icons">
+                                    <a class=" btn btn-sm btn-outline-warning">
+                                        Edit
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a class=" btn btn-sm btn-outline-danger">
+                                        Delete
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+
+<div class="add-new-btn fixed-bottom p-5">
+    <a class="btn btn-success  float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="bi bi-person-add"></i> Add Trainer
+    </a>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Image</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="sub-modal-bg" [formGroup]="trainersForm">
+                    <div>
+                        <label for="formFile" class="form-label">Upload Trainer Image:</label>
+                        <input class="form-control" type="file" id="formFile" formControlName="trainerImage">
+                        <div class="text-danger" *ngIf="trainersForm.controls['trainerImage'].touched && trainersForm.controls['trainerImage'].invalid">
+                            <span *ngIf="trainersForm.controls['trainerImage'].errors?.['required']">Image is required</span>
+                        </div>
+
+                    </div>
+                    <div>
+                        <label for="Title" class="form-label">Trainer Name:</label>
+                        <input class="form-control" type="text" placeholder="Enter Trainer Name" formControlName="trainerName">
+                        <div class="text-danger" *ngIf="trainersForm.controls['trainerName'].touched">
+                            <span *ngIf="trainersForm.controls['trainerName'].errors?.['required']">Name is required</span>
+                            <span *ngIf="trainersForm.controls['trainerName'].errors?.['minlength']">Name must be at least 3 characters</span>
+                            <span *ngIf="trainersForm.controls['trainerName'].errors?.['maxlength']">Name must be at most 50 characters long</span>
+
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Title" class="form-label">Trainer Qualification:</label>
+                        <input class="form-control" type="text" placeholder="Enter Trainer Qualification" formControlName="trainerQualification">
+                        <div class="text-danger" *ngIf="trainersForm.controls['trainerQualification'].touched">
+                            <span *ngIf="trainersForm.controls['trainerQualification'].errors?.['required']">Qualification is required</span>
+                            <span *ngIf="trainersForm.controls['trainerQualification'].errors?.['minlength']">Qualification must be at least 3 characters</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="trainer-experience" class="form-label">Trainer Experience:</label>
+                        <input class="form-control" type="number" placeholder="Trainer Experience in Years" formControlName="trainerExperience">
+                        <div class="text-danger" *ngIf="trainersForm.controls['trainerExperience'].touched && trainersForm.controls['trainerExperience'].invalid">
+                            <span *ngIf="trainersForm.controls['trainerExperience'].errors?.['required']">Experience is required</span>
+                            <span *ngIf="trainersForm.controls['trainerExperience'].errors?.['minlength']">Experience must be at least 1 year</span>
+                            <span *ngIf="trainersForm.controls['trainerExperience'].errors?.['maxlength']">Experience must be at most 99 years</span>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary ">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
