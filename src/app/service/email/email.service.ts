@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmailService {
-  private emailurl  = 'http://localhost:3000/send-email';
+  private emailurl  = 'https://yamaguchi-backend.onrender.com/send-email';
 
   constructor(private http: HttpClient) { }
 
