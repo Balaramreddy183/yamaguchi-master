@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { title } from 'process';
-import { GetService } from '../../../../service/apis/get.service';
-
+import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 
 @Component({
   selector: 'app-gallery',
@@ -30,30 +26,56 @@ export class adminGalleryComponent implements OnInit {
   galleryForm: FormGroup;
   submitted: boolean = false;
 
-  constructor(public productGetApi: GetService) {
-
+  constructor(
+    private galleryFacadeService: GalleryFacadeService,
+  ) {
     this.galleryForm = new FormGroup({
-      image: new FormControl("", [Validators.required]),
-      title: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
-      description: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
-
-    })
+      galleryImage: new FormControl(null, [Validators.required]),
+      galleryTitle: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+      galleryDescription: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
+    });
   }
-  ngOnInit(): void {
-    this.productGetApi.getGallery().subscribe((response: any) => {
-      this.gallery = response.products;
-    })
 
+  ngOnInit(): void {
+    this.loadGalleryImages();
+  }
+
+  loadGalleryImages() {
+    this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
+      this.gallery = response;
+    });
+  }
+
+  getImageUrl(path: string): string {
+    return `https://yamaguchi-backend.onrender.com/${path}`;
   }
 
   onSubmit() {
     this.submitted = true;
     if (this.galleryForm.valid) {
-      console.log(this.galleryForm.value);
+      const formData = new FormData();
+      formData.append('galleryImage', this.galleryForm.get('galleryImage')?.value);
+      formData.append('galleryTitle', this.galleryForm.get('galleryTitle')?.value);
+      formData.append('galleryDescription', this.galleryForm.get('galleryDescription')?.value);
+
+      this.galleryFacadeService.createGalleryImages(formData).subscribe(
+        response => {
+          console.log(response);
+          this.loadGalleryImages(); // Reload gallery images after successful upload
+        },
+        error => {
+          console.error('HTTP Error:', error);
+        }
+      );
     }
   }
 
-
-
-
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.galleryForm.patchValue({
+        galleryImage: file
+      });
+    }
+  }
 }

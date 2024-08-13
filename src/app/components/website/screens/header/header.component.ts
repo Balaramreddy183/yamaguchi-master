@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   contactForm!: FormGroup;
   submitted: boolean = false;
   isNavbarOpen: boolean = false;
+  isLoading = false;
 
   get f() {
     return this.contactForm.controls;
@@ -55,18 +56,24 @@ export class HeaderComponent implements OnInit {
     this.submitted = true;
     if (this.contactForm.valid) {
       console.log('Form Submitted', this.contactForm.value);
+      this.isLoading = true;
       this.emailService.sendEmail(this.contactForm.value.name, this.contactForm.value.email, this.contactForm.value.message, this.contactForm.value.subject, this.contactForm.value.phone).subscribe(
         (res) => {
+          this.isLoading = false;
           console.log('Email sent', res);
           this.contactForm.reset();
           console.log('Form Reset');
+          
         },
         (error) => {
           console.log('Error sending email', error);
+          this.isLoading = false;
+
         }
       );
     } else {
       console.log('Form is not valid');
+      this.isLoading = false;
     }
   }
 
