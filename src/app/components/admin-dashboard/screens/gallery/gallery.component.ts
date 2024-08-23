@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
-import { Modal } from 'bootstrap';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-gallery',
@@ -50,7 +50,7 @@ export class adminGalleryComponent implements OnInit {
   }
 
   getImageUrl(path: string): string {
-    return `http://localhost:3000/${path}`;
+    return `https://yamaguchi-backend.onrender.com/${path}`;
   }
 
   onSubmit() {
@@ -68,10 +68,12 @@ export class adminGalleryComponent implements OnInit {
           this.galleryForm.reset();
           this.submitted = false;
           this.resetFileInput();
-          // this.closeModal(); // Close the modal after successful submission
+          alert("Gallery Image Added Successfully");
+          this.closeModal(); // Close the modal after successful submission
         },
         error => {
           console.error('HTTP Error:', error);
+          alert("Gallery Image Added Failed");
         }
       );
     }
@@ -98,32 +100,18 @@ export class adminGalleryComponent implements OnInit {
       response => {
         console.log('Image deleted successfully');
         this.loadGalleryImages(); // Reload gallery images after successful deletion
+        alert("Gallery Image Deleted Successfully");
       },
       error => {
         console.error('Error deleting image:', error);
+        alert("Gallery Image Deleted Failed");
       }
     );
   }
 
-  // editGalleryImage(galleryItem: any) {
-  //   this.isEditMode = true;
-  //   this.currentImageId = galleryItem._id;
-  //   this.galleryForm.patchValue({
-  //     galleryTitle: galleryItem.galleryTitle,
-  //     galleryDescription: galleryItem.galleryDescription
-  //   });
-  //   // Open the modal for editing
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     const modalElement = this.staticBackdrop.nativeElement;
-  //     const modalInstance = new Modal(modalElement);
-  //     modalInstance.show();
-  //   }
-  // }
-
-  // closeModal() {
-  //   const modalInstance = Modal.getInstance(this.staticBackdrop.nativeElement);
-  //   if (modalInstance) {
-  //       modalInstance.hide();
-  //     }
-  //   }
+  closeModal() {
+    // const modalElement = this.staticBackdrop.nativeElement;
+    // const modalInstance = new bootstrap.Modal(modalElement);
+    // modalInstance.hide();
   }
+}

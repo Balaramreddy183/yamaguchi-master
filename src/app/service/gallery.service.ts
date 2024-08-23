@@ -12,8 +12,8 @@ export class GalleryService {
   private apiBaseUrl: string;
 
   constructor(private configService: AppSettingsService, private http: HttpClient) {
-    //this.apiBaseUrl = 'https://yamaguchi-backend.onrender.com/';
-    this.apiBaseUrl = 'http://localhost:3000/';
+    this.apiBaseUrl = 'https://yamaguchi-backend.onrender.com/';
+    //this.apiBaseUrl = 'http://localhost:3000/';
   }
  // url = 'http://localhost:3000/api/';
 

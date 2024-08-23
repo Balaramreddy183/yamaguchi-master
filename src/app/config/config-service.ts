@@ -1,26 +1,67 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { map } from 'rxjs/operators';
+import { LOCATION_INITIALIZED } from "@angular/common";
+import { HttpBackend, HttpClient } from "@angular/common/http";
+import { Injectable, Injector } from "@angular/core";
+import { Observable, BehaviorSubject } from "rxjs";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
+})
+export class ConfigService {
+  apiBaseUrl: string | undefined;
+}
+
+export function preInitServiceFactory(
+  initService: PreInitService,
+  injector: Injector
+) {
+  return () =>
+    new Promise((resolve) =>
+      injector
+        .get(LOCATION_INITIALIZED, Promise.resolve(undefined))
+        .then(() => resolve(initService.onInit()))
+    );
+}
+
+@Injectable({
+  providedIn: 'root',
 })
 export class AppSettingsService {
-    private settings: any;
+  private settingsSource: BehaviorSubject<ConfigService> =
+    new BehaviorSubject<ConfigService>(new ConfigService());
 
-    constructor(private http: HttpClient) {}
+  settings: Observable<Readonly<ConfigService>> = this.settingsSource.asObservable();
 
-    loadSettings(): Observable<any> {
-        return this.http.get('/assets/config.json').pipe(
-            map(settings => {
-                this.settings = settings;
-                return settings;
-            })
-        );
+  setSettings(settings: Partial<ConfigService>) {
+    const updatedConfig = { ...this.settingsSource.value, ...settings };
+    this.settingsSource.next(updatedConfig);
+  }
+
+  getSettings(): Readonly<ConfigService> {
+    return this.settingsSource.value;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PreInitService {
+  constructor(
+    private httpBackend: HttpBackend,
+    private appSettingsService: AppSettingsService
+  ) { }
+
+  async onInit(): Promise<boolean> {
+    const http = new HttpClient(this.httpBackend);
+    try {
+      const config = await http
+        .get<ConfigService>('./assets/config.json')
+        .toPromise();
+      if (config) {
+        this.appSettingsService.setSettings(config);
+      }
+      return true;
+    } catch (error) {
+      return Promise.resolve(false);
     }
-
-    getSettings() {
-        return this.settings;
-    }
+  }
 }

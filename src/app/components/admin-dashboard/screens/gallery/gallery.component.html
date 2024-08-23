@@ -13,7 +13,7 @@
                                 <th scope="col">Image</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
 
@@ -26,9 +26,9 @@
                                 <td class="title">{{galleryItem.galleryTitle}}</td>
                                 <td class="description">{{galleryItem.galleryDescription}}</td>
                                 <td class="action-icons">
-                                    <a class=" btn btn-sm btn-outline-warning">
+                                    <!-- <a class=" btn btn-sm btn-outline-warning">
                                         Edit <i class="bi bi-pencil-square"></i>
-                                    </a>
+                                    </a> -->
                                     <a class=" btn btn-sm btn-outline-danger" (click)="deleteGalleryImage(galleryItem._id)">
                                         Delete
                                         <i class="bi bi-trash"></i>

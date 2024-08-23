@@ -8,18 +8,19 @@ import { AppConfig } from '../config/app-config';
   providedIn: 'root'
 })
 export class VisitService {
-  //private apiUrl = 'https://yamaguchi-backend.onrender.com/api/total-visits'; // Replace with your backend API URL
-  private apiBaseUrl = 'http://localhost:3000/';
-  constructor(private configService: AppSettingsService, private http: HttpClient) { }
+  private apiBaseUrl: string;
 
-
+  constructor(private configService: AppSettingsService, private http: HttpClient) {
+    this.apiBaseUrl = 'https://yamaguchi-backend.onrender.com/';
+  }
 
   sendTotalVisits(visits: number): Observable<any> {
-    let url = `${this.apiBaseUrl}${AppConfig.createTotalVisits}`;
+    const url = `${this.apiBaseUrl}${AppConfig.createTotalVisits}`;
     return this.http.post(url, { visits });
   }
+
   getTotalVisits(): Observable<number> {
-    let url = `${this.apiBaseUrl}${AppConfig.getTotalVisits}`;
+    const url = `${this.apiBaseUrl}${AppConfig.getTotalVisits}`;
     return this.http.get<number>(url);
   }
 }
