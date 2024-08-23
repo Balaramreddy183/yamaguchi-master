@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-gallery',
@@ -21,6 +22,7 @@ import { GalleryFacadeService } from '../../../../facade/gallery.facade.service'
   styleUrl: './gallery.component.css'
 })
 export class adminGalleryComponent implements OnInit {
+  @ViewChild('staticBackdrop') staticBackdrop!: ElementRef;
 
   gallery: any;
   galleryForm: FormGroup;
@@ -62,11 +64,22 @@ export class adminGalleryComponent implements OnInit {
         response => {
           console.log(response);
           this.loadGalleryImages(); // Reload gallery images after successful upload
+          this.galleryForm.reset();
+          this.submitted = false;
+          this.resetFileInput();
+          // this.closeModal(); // Close the modal after successful submission
         },
         error => {
           console.error('HTTP Error:', error);
         }
       );
+    }
+  }
+
+  resetFileInput() {
+    const fileInput = document.getElementById('formFile') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
     }
   }
 
@@ -78,4 +91,13 @@ export class adminGalleryComponent implements OnInit {
       });
     }
   }
+
+  // closeModal() {
+  //   if (typeof document !== 'undefined' && this.staticBackdrop) {
+  //     const modalInstance = Modal.getInstance(this.staticBackdrop.nativeElement);
+  //     if (modalInstance) {
+  //       modalInstance.hide();
+  //     }
+  //   }
+  // }
 }

@@ -18,7 +18,7 @@ import { AfterViewInit } from '@angular/core';
 export class LandingpageComponent implements OnInit, AfterViewInit {
 
     @ViewChild('countSection') countSection!: ElementRef;
-    isLoading = true;
+    isLoading = false;
     contactSectionForm!: FormGroup;
     counters = [
         { start: 0, end: 40, current: 0, text: 'YEARS EXPERIENCE' },
@@ -109,9 +109,9 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         if (isPlatformBrowser(this.platformId)) {
             this.preloadImages();
         }
-        setTimeout(() => {
-            this.isLoading = false;
-          }, 3000);
+        // setTimeout(() => {
+        //     this.isLoading = false;
+        // }, 3000);
     }
 
     ngAfterViewInit() {
@@ -244,7 +244,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
                     button.addEventListener('click', (event) => {
                         const filterValue = (event.target as HTMLElement).getAttribute('data-filter');
                         this.isotopeInstance.arrange({ filter: filterValue });
-                        
+
                         filterButtons.forEach(btn => btn.classList.remove('active'));
                         (event.target as HTMLElement).classList.add('active');
 
@@ -289,7 +289,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     }
 
     fallbackImage = 'https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80';
-    
+
     handleImageError(event: any) {
         event.target.style.backgroundImage = `url('${this.fallbackImage}')`;
     }

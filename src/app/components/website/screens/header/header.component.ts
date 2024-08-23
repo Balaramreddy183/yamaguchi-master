@@ -18,7 +18,6 @@ import { EmailService } from '../../../../service/email/email.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-
   contactForm!: FormGroup;
   submitted: boolean = false;
   isNavbarOpen: boolean = false;
@@ -63,12 +62,12 @@ export class HeaderComponent implements OnInit {
           console.log('Email sent', res);
           this.contactForm.reset();
           console.log('Form Reset');
-          
+          alert('Message sent successfully');
         },
         (error) => {
           console.log('Error sending email', error);
           this.isLoading = false;
-
+          alert('Message not sent');
         }
       );
     } else {
