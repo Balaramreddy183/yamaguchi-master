@@ -46,10 +46,11 @@ export class adminGalleryComponent implements OnInit {
     this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
       this.gallery = response;
     });
+    console.log("All Gallery Images ", this.gallery);
   }
 
   getImageUrl(path: string): string {
-    return `https://yamaguchi-backend.onrender.com/${path}`;
+    return `http://localhost:3000/${path}`;
   }
 
   onSubmit() {
@@ -92,12 +93,37 @@ export class adminGalleryComponent implements OnInit {
     }
   }
 
+  deleteGalleryImage(id: string) {
+    this.galleryFacadeService.deleteGalleryImage(id).subscribe(
+      response => {
+        console.log('Image deleted successfully');
+        this.loadGalleryImages(); // Reload gallery images after successful deletion
+      },
+      error => {
+        console.error('Error deleting image:', error);
+      }
+    );
+  }
+
+  // editGalleryImage(galleryItem: any) {
+  //   this.isEditMode = true;
+  //   this.currentImageId = galleryItem._id;
+  //   this.galleryForm.patchValue({
+  //     galleryTitle: galleryItem.galleryTitle,
+  //     galleryDescription: galleryItem.galleryDescription
+  //   });
+  //   // Open the modal for editing
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     const modalElement = this.staticBackdrop.nativeElement;
+  //     const modalInstance = new Modal(modalElement);
+  //     modalInstance.show();
+  //   }
+  // }
+
   // closeModal() {
-  //   if (typeof document !== 'undefined' && this.staticBackdrop) {
-  //     const modalInstance = Modal.getInstance(this.staticBackdrop.nativeElement);
-  //     if (modalInstance) {
+  //   const modalInstance = Modal.getInstance(this.staticBackdrop.nativeElement);
+  //   if (modalInstance) {
   //       modalInstance.hide();
   //     }
   //   }
-  // }
-}
+  }

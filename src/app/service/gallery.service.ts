@@ -12,7 +12,8 @@ export class GalleryService {
   private apiBaseUrl: string;
 
   constructor(private configService: AppSettingsService, private http: HttpClient) {
-    this.apiBaseUrl = 'https://yamaguchi-backend.onrender.com/api/';
+    //this.apiBaseUrl = 'https://yamaguchi-backend.onrender.com/';
+    this.apiBaseUrl = 'http://localhost:3000/';
   }
  // url = 'http://localhost:3000/api/';
 
@@ -24,5 +25,13 @@ export class GalleryService {
   getGalleryImages(): Observable<any> {
     let url = `${this.apiBaseUrl}${AppConfig.getGalleryImages}`;
     return this.http.get(url);
+  }
+  updateGalleryImage(id: string, data: any): Observable<any> {
+    let url = `${this.apiBaseUrl}${AppConfig.updateGalleryImage}/${id}`;
+    return this.http.put(url, data);
+  }
+  deleteGalleryImage(id: string): Observable<any> {
+    let url = `${this.apiBaseUrl}${AppConfig.deleteGalleryImage}/${id}`;
+    return this.http.delete(url);
   }
 }

@@ -18,8 +18,8 @@
                         </thead>
 
                         <tbody class="table-group-divider">
-                            <tr *ngFor="let galleryItem of gallery">
-                                <th scope="row">{{galleryItem._id}}</th>
+                            <tr *ngFor="let galleryItem of gallery; let i = index">
+                                <th>{{i+1}}</th>
                                 <td class="image">
                                     <img loading="lazy" [src]="getImageUrl(galleryItem.path)" [alt]="galleryItem.galleryTitle" class="table-image">
                                 </td>
@@ -29,7 +29,7 @@
                                     <a class=" btn btn-sm btn-outline-warning">
                                         Edit <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a class=" btn btn-sm btn-outline-danger">
+                                    <a class=" btn btn-sm btn-outline-danger" (click)="deleteGalleryImage(galleryItem._id)">
                                         Delete
                                         <i class="bi bi-trash"></i>
                                     </a>
