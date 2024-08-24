@@ -230,3 +230,21 @@
         box-shadow: .2em -.2em 0 0 currentcolor;
     }
 }
+
+.password-container {
+    position: relative;
+}
+
+.password-container .fa-solid {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    bottom: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888888;
+}
+
+.password-container .fa-solid:hover {
+    color: #000000;
+}

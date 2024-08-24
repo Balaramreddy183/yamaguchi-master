@@ -1,10 +1,13 @@
 <div class="container-bg">
     <div class="container">
         <div class="heading">Sign In</div>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
-            <input formControlName="username" required class="input" type="email" placeholder="E-mail">
-            <input formControlName="password" required class="input" type="password" placeholder="Password">
-            <input class="login-button" type="submit" value="Sign In">
+        <form [formGroup]="loginForm" class="form">
+            <input formControlName="username" required class="input" type="text" placeholder="Username">
+            <div class="password-container">
+                <input formControlName="password" required class="input" [type]="passwordFieldType" placeholder="Password">
+                <i class="fa-solid" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+            </div>
+            <input class="login-button" type="submit" (click)="onSubmit()" value="Sign In">
         </form>
         <!-- <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> -->
     </div>

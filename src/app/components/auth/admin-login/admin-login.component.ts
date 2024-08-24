@@ -16,6 +16,8 @@ export class AdminLoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
   isLoading: boolean = false;
+  passwordFieldType: string = 'password';
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -25,6 +27,10 @@ export class AdminLoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
   onSubmit(): void {
