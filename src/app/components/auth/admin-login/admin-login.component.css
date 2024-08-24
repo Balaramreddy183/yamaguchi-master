@@ -1,0 +1,144 @@
+.container-bg {
+    background-color: #1a2f4e;
+    /* Background color */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 350px;
+    background: #ffffffaf;
+    /* Updated background color to white */
+    border-radius: 40px;
+    padding: 25px 35px;
+    border: 5px solid #555555;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 30px -20px;
+    /* Lighter shadow */
+    margin: 20px;
+}
+
+.heading {
+    text-align: center;
+    font-weight: 900;
+    font-size: 32px;
+    color: #e80040;
+    /* Heading color */
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.form .input {
+    width: 100%;
+    background: #f0f0f0;
+    /* Lighter background for input */
+    border: none;
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
+    /* Lighter shadow */
+    border-inline: 2px solid transparent;
+    color: #333333;
+    /* Darker text color */
+}
+
+.form .input::placeholder {
+    color: #888888;
+    /* Placeholder color */
+}
+
+.form .input:focus {
+    outline: none;
+    border-inline: 2px solid #e80040;
+    /* Focus border color */
+}
+
+.form .login-button {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    background: linear-gradient(45deg, #e80040 0%, #b50032 100%);
+    /* Button gradient */
+    color: #ffffff;
+    /* Button text color */
+    padding-block: 15px;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 10px -15px;
+    /* Lighter shadow */
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.form .login-button:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 23px 10px -20px;
+    /* Lighter shadow */
+}
+
+.form .login-button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 10px -10px;
+    /* Lighter shadow */
+}
+
+.social-account-container {
+    margin-top: 25px;
+}
+
+.social-account-container .title {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: rgb(170, 170, 170);
+}
+
+.social-account-container .social-accounts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.social-account-container .social-accounts .social-button {
+    background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+    border: 5px solid white;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.social-account-container .social-accounts .social-button .svg {
+    fill: white;
+    margin: auto;
+}
+
+.social-account-container .social-accounts .social-button:hover {
+    transform: scale(1.2);
+}
+
+.social-account-container .social-accounts .social-button:active {
+    transform: scale(0.9);
+}
+
+.agreement {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.agreement a {
+    text-decoration: none;
+    color: #0099ff;
+    font-size: 9px;
+}

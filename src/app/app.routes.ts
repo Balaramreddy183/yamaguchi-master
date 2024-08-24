@@ -10,9 +10,8 @@ import { ServicesComponent } from './components/website/screens/services/service
 import { GalleryComponent } from './components/website/screens/gallery/gallery.component';
 import { adminGalleryComponent } from './components/admin-dashboard/screens/gallery/gallery.component';
 import { ContactUsComponent } from './components/website/screens/contact-us/contact-us.component';
-
-
-
+import { AdminLoginComponent } from './components/auth/admin-login/admin-login.component';
+import { AuthGuard } from './service/admin-auth.guard';
 
 export const routes: Routes = [
     {
@@ -21,7 +20,6 @@ export const routes: Routes = [
     {
         path: 'home', component: HomeComponent
     },
-
     {
         path: 'about-us', component: AboutUsComponent
     },
@@ -34,26 +32,31 @@ export const routes: Routes = [
     {
         path:'contact-us', component:ContactUsComponent
     },
-
     {
-        path: 'admin-homepage', component: HomepageDashboardComponent,
+        path: 'admin/login', component: AdminLoginComponent
     },
     {
-        path: 'admin-gallery', component: adminGalleryComponent
+        path: 'admin', 
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: 'homepage', component: HomepageDashboardComponent
+            },
+            {
+                path: 'gallery', component: adminGalleryComponent
+            },
+            {
+                path: 'events', component: EventsComponent
+            },
+            {
+                path: 'trainers', component: TrainersComponent
+            },
+            {
+                path: 'testimonials', component: TestimonialsComponent
+            }
+        ]
     },
     {
-        path: 'admin-events', component: EventsComponent
-    },
-    {
-        path: 'admin-trainers', component: TrainersComponent
-    },
-    {
-        path: 'admin-testimonials', component: TestimonialsComponent
-    },
-    {
-        path:'**', component:HomeComponent
+        path: '**', component: HomeComponent
     }
-
-
 ];
-

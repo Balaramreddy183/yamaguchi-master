@@ -1,5 +1,18 @@
 export const AppConfig = {
 
+//admin endpoints
+//login
+login: 'Admin/login',
+
+//logout
+logout: 'Admin/Logout',
+
+//isLoggedIn
+isLoggedIn: 'Admin/IsLoggedIn',
+
+
+
+
     // gallery endpoints
     createGalleryImages: 'Gallery/CreateGalleryImage', 
     getGalleryImages: 'Gallery/getAllGalleryImages',

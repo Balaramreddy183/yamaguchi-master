@@ -7,15 +7,12 @@
     font-family: "open sans", sans-serif;
     font-size: 15px;
     font-weight: normal;
-
 }
 
 .header-contact-details {
     display: flex;
     flex-direction: row;
     align-items: center;
-
-
 }
 
 .header-contact-details ul {
@@ -24,7 +21,6 @@
     align-items: center;
     margin: 0;
     gap: 5px;
-
 }
 
 .header-social-media-icons {
@@ -44,7 +40,6 @@
     flex-direction: row;
 }
 
-
 .header-contact-details .bi {
     color: #e80040;
 }
@@ -59,6 +54,7 @@
     background-color: #b50032;
 }
 
+
 /* navbar section starts here  */
 
 .nav-item {
@@ -66,16 +62,12 @@
     line-height: 18.5714px;
     width: max-content;
     font-weight: 600;
-
 }
 
 .nav-item .active {
     background-color: #1a2f4e;
     color: #ffffff;
     border-radius: 30px;
-   
-
-
 }
 
 .nav-link {
@@ -89,9 +81,12 @@
     background-color: #1a2f4e;
     color: #ffffff !important;
     border-radius: 15px;
-
 }
 
 .logout-btn:hover {
     background-color: #b50032;
+}
+
+.logout-btn {
+    cursor: pointer;
 }
