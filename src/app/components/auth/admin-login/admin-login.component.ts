@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AdminLoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
-
+  isLoading: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -29,12 +29,15 @@ export class AdminLoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const credentials = this.loginForm.value;
       this.authService.login(credentials).subscribe(response => {
         if (response) {
+          this.isLoading = false;
           alert('Login successful');
           this.router.navigate(['/admin/homepage']);
         } else {
+          this.isLoading = false;
           alert('Invalid username or password');
           this.errorMessage = 'Invalid username or password';
         }

@@ -10,8 +10,9 @@ import { AppLocalStorage } from './app-storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/'; // Replace with your API URL
+  //private apiUrl = 'http://localhost:3000/'; 
 
+  private apiUrl = 'https://yamaguchi-backend.onrender.com/'; 
   constructor(private http: HttpClient, private router: Router, private localStorage: AppLocalStorage) {}
 
   login(credentials: { username: string, password: string }): Observable<any> {

@@ -27,7 +27,7 @@ export class adminGalleryComponent implements OnInit {
   gallery: any;
   galleryForm: FormGroup;
   submitted: boolean = false;
-
+  isLoading: boolean = false;
   constructor(
     private galleryFacadeService: GalleryFacadeService,
   ) {
@@ -43,8 +43,10 @@ export class adminGalleryComponent implements OnInit {
   }
 
   loadGalleryImages() {
+    this.isLoading = true;
     this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
       this.gallery = response;
+      this.isLoading = false;
     });
     console.log("All Gallery Images ", this.gallery);
   }
@@ -56,6 +58,7 @@ export class adminGalleryComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.galleryForm.valid) {
+      this.isLoading = true;
       const formData = new FormData();
       formData.append('galleryImage', this.galleryForm.get('galleryImage')?.value);
       formData.append('galleryTitle', this.galleryForm.get('galleryTitle')?.value);
@@ -68,12 +71,14 @@ export class adminGalleryComponent implements OnInit {
           this.galleryForm.reset();
           this.submitted = false;
           this.resetFileInput();
+          this.isLoading = false;
           alert("Gallery Image Added Successfully");
           this.closeModal(); // Close the modal after successful submission
         },
         error => {
           console.error('HTTP Error:', error);
           alert("Gallery Image Added Failed");
+          this.isLoading = false;
         }
       );
     }
@@ -96,15 +101,18 @@ export class adminGalleryComponent implements OnInit {
   }
 
   deleteGalleryImage(id: string) {
+    this.isLoading = true;
     this.galleryFacadeService.deleteGalleryImage(id).subscribe(
       response => {
         console.log('Image deleted successfully');
-        this.loadGalleryImages(); // Reload gallery images after successful deletion
+        this.loadGalleryImages();
+        this.isLoading = false;
         alert("Gallery Image Deleted Successfully");
       },
       error => {
         console.error('Error deleting image:', error);
         alert("Gallery Image Deleted Failed");
+        this.isLoading = false;
       }
     );
   }
