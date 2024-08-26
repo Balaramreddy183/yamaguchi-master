@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { EmailService } from '../../../../service/email/email.service';
+import { AuthService } from '../../../../service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,10 @@ export class HeaderComponent implements OnInit {
   contactForm!: FormGroup;
   submitted: boolean = false;
   isNavbarOpen: boolean = false;
-  isLoading = false;
+  
+  isLoading: boolean = false;
+
+
 
   get f() {
     return this.contactForm.controls;
@@ -32,7 +36,8 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private emailService: EmailService,
-    @Inject(ElementRef) private el: ElementRef
+    @Inject(ElementRef) private el: ElementRef,
+    private authService: AuthService
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -42,7 +47,9 @@ export class HeaderComponent implements OnInit {
       message: ['', [Validators.required, Validators.maxLength(20000), Validators.minLength(5)]],
     });
   }
-
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

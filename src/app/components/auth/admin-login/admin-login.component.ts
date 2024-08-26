@@ -23,6 +23,10 @@ export class AdminLoginComponent {
     private router: Router,
     private fb: FormBuilder
   ) {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/admin/homepage']);
+    }
+
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

@@ -21,7 +21,7 @@
                             <tr *ngFor="let galleryItem of gallery; let i = index">
                                 <th>{{i+1}}</th>
                                 <td class="image">
-                                    <img loading="lazy" [src]="getImageUrl(galleryItem.path)" [alt]="galleryItem.galleryTitle" class="table-image">
+                                    <img loading="lazy" [src]="galleryItem.filename" [alt]="galleryItem.galleryTitle" class="table-image">
                                 </td>
                                 <td class="title">{{galleryItem.galleryTitle}}</td>
                                 <td class="description">{{galleryItem.galleryDescription}}</td>
@@ -64,10 +64,10 @@
                     <div>
                         <label for="formFile" class="form-label">Upload Image:</label>
                         <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
+                        <div class="text-danger" *ngIf="fileError">{{ fileError }}</div>
                         <div class="text-danger" *ngIf=" galleryForm.controls['galleryImage'].invalid  &&  galleryForm.controls['galleryImage'].touched  || submitted">
                             <span *ngIf="galleryForm.controls['galleryImage'].errors?.['required']">Image is required</span>
-                            <!-- <span *ngIf="galleryForm.controls['image'].errors?.['max']" >Image is too large</span>
-                            <span *ngIf="galleryForm.controls['image'].errors?.['min']" >Image is too small</span> -->
+                            <span *ngIf="galleryForm.controls['galleryImage'].errors?.['max']">Image is too large</span>
                         </div>
                     </div>
                     <div>
@@ -88,7 +88,6 @@
                             <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['maxlength']">Description must be at most 500 characters long</span>
                         </div>
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">

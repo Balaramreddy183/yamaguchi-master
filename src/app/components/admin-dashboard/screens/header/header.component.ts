@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -11,8 +11,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   isLoading: boolean = false;
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
   logout(): void {
     this.isLoading = true;
     this.authService.logout();

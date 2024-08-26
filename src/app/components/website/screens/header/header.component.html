@@ -130,8 +130,14 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="closeNavbar()">CONTACT US</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/login" routerLinkActive="active" (click)="closeNavbar()">ADMIN LOGIN</a>
+                </li> -->
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link" routerLink="/admin/homepage" routerLinkActive="active">VIEW PROFILE</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedIn">
+                    <a class="nav-link" routerLink="/admin/login" routerLinkActive="active">ADMIN LOGIN</a>
                 </li>
             </ul>
         </div>

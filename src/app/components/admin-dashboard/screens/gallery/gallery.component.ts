@@ -28,6 +28,8 @@ export class adminGalleryComponent implements OnInit {
   galleryForm: FormGroup;
   submitted: boolean = false;
   isLoading: boolean = false;
+  fileError: string = '';
+
   constructor(
     private galleryFacadeService: GalleryFacadeService,
   ) {
@@ -45,19 +47,18 @@ export class adminGalleryComponent implements OnInit {
   loadGalleryImages() {
     this.isLoading = true;
     this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
-      this.gallery = response;
+      this.gallery = response.map((item: any) => ({
+        ...item,
+        filename: `data:image/png;base64,${item.filename}`
+      }));
       this.isLoading = false;
+      console.log("All Gallery Images ", this.gallery);
     });
-    console.log("All Gallery Images ", this.gallery);
-  }
-
-  getImageUrl(path: string): string {
-    return `https://yamaguchi-backend.onrender.com/${path}`;
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.galleryForm.valid) {
+    if (this.galleryForm.valid && !this.fileError) {
       this.isLoading = true;
       const formData = new FormData();
       formData.append('galleryImage', this.galleryForm.get('galleryImage')?.value);
@@ -94,9 +95,20 @@ export class adminGalleryComponent implements OnInit {
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.galleryForm.patchValue({
-        galleryImage: file
-      });
+      const fileType = file.type;
+      // const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+      if (!fileType.startsWith('image/')) {
+        this.fileError = 'Only image files are allowed';
+        this.galleryForm.patchValue({
+          galleryImage: null
+        });
+      } else {
+        this.fileError = '';
+        this.galleryForm.patchValue({
+          galleryImage: file
+        });
+      }
     }
   }
 
