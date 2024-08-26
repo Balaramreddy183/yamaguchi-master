@@ -21,10 +21,10 @@
                             <tr *ngFor="let galleryItem of gallery; let i = index">
                                 <th>{{i+1}}</th>
                                 <td class="image">
-                                    <img loading="lazy" [src]="galleryItem.filename" [alt]="galleryItem.galleryTitle" class="table-image">
+                                    <img loading="lazy" [src]="galleryItem?.filename" [alt]="galleryItem?.galleryTitle" class="table-image">
                                 </td>
-                                <td class="title">{{galleryItem.galleryTitle}}</td>
-                                <td class="description">{{galleryItem.galleryDescription}}</td>
+                                <td class="title">{{galleryItem?.galleryTitle}}</td>
+                                <td class="description">{{galleryItem?.galleryDescription}}</td>
                                 <td class="action-icons">
                                     <!-- <a class=" btn btn-sm btn-outline-warning">
                                         Edit <i class="bi bi-pencil-square"></i>

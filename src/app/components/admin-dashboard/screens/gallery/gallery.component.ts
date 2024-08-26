@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +33,8 @@ export class adminGalleryComponent implements OnInit {
 
   constructor(
     private galleryFacadeService: GalleryFacadeService,
+    private titleService: Title,
+    private metaService: Meta
   ) {
     this.galleryForm = new FormGroup({
       galleryImage: new FormControl(null, [Validators.required]),
@@ -42,6 +45,11 @@ export class adminGalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGalleryImages();
+    this.titleService.setTitle('Gallery - Yamaguchi Karate Academy');
+    this.metaService.addTags([
+      { name: 'description', content: 'View the gallery of Yamaguchi Karate Academy. See our students in action and the events we host.' },
+      { name: 'keywords', content: 'karate, gallery, Yamaguchi Karate Academy, Hyderabad, martial arts' }
+    ]);
   }
 
   loadGalleryImages() {
@@ -96,7 +104,6 @@ export class adminGalleryComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const fileType = file.type;
-      // const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
       if (!fileType.startsWith('image/')) {
         this.fileError = 'Only image files are allowed';
