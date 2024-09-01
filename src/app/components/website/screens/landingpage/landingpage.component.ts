@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit } from '@angular/core';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
+import imagesLoaded from 'imagesloaded';
 
 @Component({
     selector: 'app-landingpage',
@@ -15,15 +16,6 @@ import { GalleryFacadeService } from '../../../../facade/gallery.facade.service'
     templateUrl: './landingpage.component.html',
     styleUrl: './landingpage.component.css',
     imports: [FooterComponent, HeaderComponent, FormsModule, ReactiveFormsModule, CommonModule],
-    // providers: [
-    //     {
-    //       provide: IMAGE_CONFIG,
-    //       useValue: {
-    //         disableImageSizeWarning: true, 
-    //         disableImageLazyLoadWarning: true
-    //       }
-    //     },
-    //   ],
 })
 export class LandingpageComponent implements OnInit, AfterViewInit {
 
@@ -263,6 +255,11 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
                             this.isotopeInstance.layout();
                         }, 100);
                     });
+                });
+
+                // Ensure layout is recalculated after all images are loaded
+                imagesLoaded(grid, () => {
+                    this.isotopeInstance.layout();
                 });
             }
         });
