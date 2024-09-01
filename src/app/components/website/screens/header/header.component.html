@@ -116,19 +116,19 @@
         <div class="collapse navbar-collapse" [class.show]="isNavbarOpen" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active" (click)="closeNavbar()">HOME</a>
+                    <a class="nav-link" aria-current="page" routerLinkActive="active" (click)="closeNavbar()" (click)="scrollToSection('landingpagecarousel')">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" routerLink="/about-us" routerLinkActive="active" (click)="closeNavbar()">ABOUT US</a>
+                    <a class="nav-link" aria-current="page" routerLinkActive="active" (click)="closeNavbar()" (click)="scrollToSection('aboutus')">ABOUT US</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/services" routerLinkActive="active" (click)="closeNavbar()">SERVICES</a>
+                    <a class="nav-link" routerLink="/services" routerLinkActive="active" (click)="closeNavbar()" (click)="scrollToSection('services')">SERVICES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/gallery" routerLinkActive="active" (click)="closeNavbar()">GALLERY</a>
+                    <a class="nav-link" routerLink="/gallery" routerLinkActive="active" (click)="closeNavbar()" (click)="scrollToSection('gallery')">GALLERY</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="closeNavbar()">CONTACT US</a>
+                    <a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="closeNavbar()" (click)="scrollToSection('contactus')">CONTACT US</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/login" routerLinkActive="active" (click)="closeNavbar()">ADMIN LOGIN</a>

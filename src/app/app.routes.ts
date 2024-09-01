@@ -20,18 +20,18 @@ export const routes: Routes = [
     {
         path: 'home', component: HomeComponent
     },
-    {
-        path: 'about-us', component: AboutUsComponent
-    },
-    {
-        path: 'gallery', component: GalleryComponent
-    },
-    {
-        path: 'services', component: ServicesComponent
-    },
-    {
-        path:'contact-us', component:ContactUsComponent
-    },
+    // {
+    //     path: 'about-us', component: AboutUsComponent
+    // },
+    // {
+    //     path: 'gallery', component: GalleryComponent
+    // },
+    // {
+    //     path: 'services', component: ServicesComponent
+    // },
+    // {
+    //     path:'contact-us', component:ContactUsComponent
+    // },
     {
         path: 'admin/login', component: AdminLoginComponent
     },

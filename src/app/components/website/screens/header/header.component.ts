@@ -115,4 +115,13 @@ export class HeaderComponent implements OnInit {
       this.closeNavbar();
     }
   }
+
+  scrollToSection(sectionId: string) {
+    this.router.navigate(['/home']).then(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
 }
