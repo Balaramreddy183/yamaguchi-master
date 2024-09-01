@@ -194,7 +194,7 @@
 
         <div class="gallery-grid">
             <div class="gallery-item {{image.category}}" *ngFor="let image of galleryImages; let i = index">
-                <img [src]="image.src" [alt]="image.alt" (click)="openLightbox(i)">
+                <img loading="lazy" [src]="image.filename" [alt]="image.galleryTitle" (click)="openLightbox(i)">
             </div>
         </div>
     </div>

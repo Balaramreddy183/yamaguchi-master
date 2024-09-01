@@ -8,7 +8,7 @@ import { VisitService } from '../../../../service/visit.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [ CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private visitService: VisitService // Inject the service
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -46,15 +46,17 @@ export class FooterComponent implements OnInit {
   }
 
   loadAndIncrementTotalVisits() {
+    console.log("Loading and Incrementing Total Visits");
     this.visitService.getTotalVisits().subscribe(
       (visits: number) => {
         this.totalVisits = visits + 1;
+        console.log("Get Total Visits ", this.totalVisits);
         this.visitService.sendTotalVisits(this.totalVisits).subscribe(
           () => {
-            console.log('Total visits updated successfully');
+            console.log('Total visits updated successfully', this.totalVisits);
           },
           (error) => {
-            console.error('Error updating total visits:', error);
+            //    console.error('Error updating total visits:', error);
           }
         );
       },

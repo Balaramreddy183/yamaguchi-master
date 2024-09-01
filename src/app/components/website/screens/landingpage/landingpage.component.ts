@@ -7,18 +7,28 @@ import { Router } from 'express';
 import { HttpClientModule } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit } from '@angular/core';
+import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 
 @Component({
     selector: 'app-landingpage',
     standalone: true,
     templateUrl: './landingpage.component.html',
     styleUrl: './landingpage.component.css',
-    imports: [FooterComponent, HeaderComponent, FormsModule, ReactiveFormsModule, CommonModule]
+    imports: [FooterComponent, HeaderComponent, FormsModule, ReactiveFormsModule, CommonModule],
+    // providers: [
+    //     {
+    //       provide: IMAGE_CONFIG,
+    //       useValue: {
+    //         disableImageSizeWarning: true, 
+    //         disableImageLazyLoadWarning: true
+    //       }
+    //     },
+    //   ],
 })
 export class LandingpageComponent implements OnInit, AfterViewInit {
 
     @ViewChild('countSection') countSection!: ElementRef;
-    isLoading = false;
+    isLoading = true;
     contactSectionForm!: FormGroup;
     counters = [
         { start: 0, end: 40, current: 0, text: 'YEARS EXPERIENCE' },
@@ -73,7 +83,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
             group: true
         }
     ];
-    galleryImages = [
+    gallery = [
         { src: '../../../../../assets/images/karate-images/asset 14.jpeg', alt: 'Karate Image 1', title: 'Karate Image 1', description: 'Karate Image 1', category: 'training', class: 'wide' },
         { src: '../../../../../assets/images/karate-images/asset 15.jpeg', alt: 'Karate Image 2', title: 'Karate Image 2', description: 'Karate Image 2', category: 'training', class: 'tall' },
         { src: '../../../../../assets/images/karate-images/asset 12.jpeg', alt: 'Karate Image 3', title: 'Karate Image 3', description: 'Karate Image 3', category: 'training' },
@@ -88,12 +98,14 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     currentImageIndex = 0;
     currentImageTitle = '';
     currentImageDescription = '';
-
+    galleryImages: any;
     private isotopeInstance: any;
 
     constructor(
         private fb: FormBuilder,
         private renderer: Renderer2,
+        private galleryFacadeService: GalleryFacadeService,
+
         @Inject(PLATFORM_ID) private platformId: Object
     ) {
         this.contactSectionForm = this.fb.group({
@@ -109,9 +121,8 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         if (isPlatformBrowser(this.platformId)) {
             this.preloadImages();
         }
-        // setTimeout(() => {
-        //     this.isLoading = false;
-        // }, 3000);
+
+        this.loadGalleryImages();
     }
 
     ngAfterViewInit() {
@@ -212,19 +223,19 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     }
 
     preloadImages() {
-        const totalImages = this.galleryImages.length;
-        let loadedImages = 0;
+        // const totalImages = this.galleryImages.length;
+        // let loadedImages = 0;
 
-        this.galleryImages.forEach((image) => {
-            const img = new Image();
-            img.onload = () => {
-                loadedImages++;
-                if (loadedImages === totalImages) {
-                    this.initializeIsotope();
-                }
-            };
-            img.src = image.src;
-        });
+        // this.galleryImages.forEach((filename: any) => {
+        //     const img = new Image();
+        //     img.onload = () => {
+        //         loadedImages++;
+        //         if (loadedImages === totalImages) {
+        //             this.initializeIsotope();
+        //         }
+        //     };
+        //     img.filename = image.filename;
+        // });
     }
 
     private initializeIsotope(): void {
@@ -279,9 +290,9 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
 
     private updateLightboxImage(): void {
         const currentImage = this.galleryImages[this.currentImageIndex];
-        this.currentLightboxImage = currentImage.src;
-        this.currentImageTitle = currentImage.title;
-        this.currentImageDescription = currentImage.description;
+        this.currentLightboxImage = currentImage.filename;
+        this.currentImageTitle = currentImage.galleryTitle;
+        this.currentImageDescription = currentImage.galleryDescription;
     }
 
     sendContactSectionForm() {
@@ -292,5 +303,18 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
 
     handleImageError(event: any) {
         event.target.style.backgroundImage = `url('${this.fallbackImage}')`;
+    }
+
+    loadGalleryImages() {
+        this.isLoading = true;
+        this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
+            this.galleryImages = response.map((item: any) => ({
+                ...item,
+                filename: `data:image/png;base64,${item.filename}`
+            }));
+            this.isLoading = false;
+            console.log("All Gallery Images ", this.galleryImages);
+            this.preloadImages();
+        });
     }
 }
