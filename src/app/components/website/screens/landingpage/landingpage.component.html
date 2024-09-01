@@ -186,14 +186,15 @@
         <p class="gallery-subtitle">Capturing Moments of Excellence</p>
 
         <div class="gallery-filter">
-            <button class="filter-btn active" data-filter="*">All</button>
-            <button class="filter-btn" data-filter=".training">Training</button>
-            <button class="filter-btn" data-filter=".competition">Competition</button>
-            <button class="filter-btn" data-filter=".events">Events</button>
+            <button class="filter-btn active" (click)="clearFilters()">All</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('training')">Training</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('competition')">Competition</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('events')">Events</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('achievements')">Achievements</button>
         </div>
 
         <div class="gallery-grid">
-            <div class="gallery-item {{image.category}}" *ngFor="let image of galleryImages; let i = index">
+            <div class="gallery-item {{image.category}}" *ngFor="let image of filteredResults; let i = index">
                 <img loading="lazy" [src]="image.filename" [alt]="image.galleryTitle" (click)="openLightbox(i)">
             </div>
         </div>

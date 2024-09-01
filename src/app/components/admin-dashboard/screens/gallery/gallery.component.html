@@ -13,6 +13,7 @@
                                 <th scope="col">Image</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
@@ -25,6 +26,7 @@
                                 </td>
                                 <td class="title">{{galleryItem?.galleryTitle}}</td>
                                 <td class="description">{{galleryItem?.galleryDescription}}</td>
+                                <td class="category">{{galleryItem?.galleryCategory}}</td>
                                 <td class="action-icons">
                                     <!-- <a class=" btn btn-sm btn-outline-warning">
                                         Edit <i class="bi bi-pencil-square"></i>
@@ -66,7 +68,8 @@
                         <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
                         <div class="text-danger" *ngIf="fileError">{{ fileError }}</div>
                         <div class="text-danger" *ngIf=" galleryForm.controls['galleryImage'].invalid  &&  galleryForm.controls['galleryImage'].touched  || submitted">
-                            <span *ngIf="galleryForm.controls['galleryImage'].errors?.['required']">Image is required</span>
+                            <span *ngIf="galleryForm.controls['galleryImage'].errors?.['required']">Image is
+                                required</span>
                             <span *ngIf="galleryForm.controls['galleryImage'].errors?.['max']">Image is too large</span>
                         </div>
                     </div>
@@ -74,18 +77,35 @@
                         <label for="Title" class="form-label">Title:</label>
                         <input class="form-control" type="text" placeholder="Enter title here" aria-label="default input example" formControlName="galleryTitle">
                         <div class="text-danger" *ngIf=" galleryForm.controls['galleryTitle'].invalid  &&  galleryForm.controls['galleryTitle'].touched  || submitted">
-                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['required']">Title is required</span>
-                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['minlength']">Title must be at least 2 characters long</span>
-                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['maxlength']">Title must be at most 50 characters long</span>
+                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['required']">Title is
+                                required</span>
+                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['minlength']">Title must be at
+                                least 2 characters long</span>
+                            <span *ngIf="galleryForm.controls['galleryTitle'].errors?.['maxlength']">Title must be at
+                                most 50 characters long</span>
                         </div>
                     </div>
                     <div>
                         <label for="description" class="form-label">Description:</label>
                         <textarea class="form-control" placeholder="Enter Description" aria-label="default input example" style="height: 100px" formControlName="galleryDescription"></textarea>
                         <div class="text-danger" *ngIf="galleryForm.controls['galleryDescription'].invalid && (galleryForm.controls['galleryDescription'].touched || galleryForm.controls['galleryDescription'].dirty) || submitted">
-                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['required']">Description is required</span>
-                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['minlength']">Description must be at least 5 characters long</span>
-                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['maxlength']">Description must be at most 500 characters long</span>
+                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['required']">Description is
+                                required</span>
+                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['minlength']">Description
+                                must be at least 5 characters long</span>
+                            <span *ngIf="galleryForm.controls['galleryDescription'].errors?.['maxlength']">Description
+                                must be at most 500 characters long</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="category" class="form-label">Category:</label>
+                        <select class="form-control" formControlName="galleryCategory">
+                            <option *ngFor="let category of categoriesdropdown" [value]="category.name">
+                                {{category.name}}</option>
+                        </select>
+                        <div class="text-danger" *ngIf="galleryForm.controls['galleryCategory'].invalid && (galleryForm.controls['galleryCategory'].touched || galleryForm.controls['galleryCategory'].dirty) || submitted">
+                            <span *ngIf="galleryForm.controls['galleryCategory'].errors?.['required']">Category is
+                                required</span>
                         </div>
                     </div>
                 </form>

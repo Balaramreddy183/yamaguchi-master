@@ -75,16 +75,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
             group: true
         }
     ];
-    gallery = [
-        { src: '../../../../../assets/images/karate-images/asset 14.jpeg', alt: 'Karate Image 1', title: 'Karate Image 1', description: 'Karate Image 1', category: 'training', class: 'wide' },
-        { src: '../../../../../assets/images/karate-images/asset 15.jpeg', alt: 'Karate Image 2', title: 'Karate Image 2', description: 'Karate Image 2', category: 'training', class: 'tall' },
-        { src: '../../../../../assets/images/karate-images/asset 12.jpeg', alt: 'Karate Image 3', title: 'Karate Image 3', description: 'Karate Image 3', category: 'training' },
-        { src: '../../../../../assets/images/karate-images/asset 13.jpeg', alt: 'Karate Image 4', title: 'Karate Image 4', description: 'Karate Image 4', category: 'events' },
-        { src: '../../../../../assets/images/karate-images/asset 12.jpeg', alt: 'Karate Image 5', title: 'Karate Image 5', description: 'Karate Image 5', category: 'events' },
-        { src: '../../../../../assets/images/karate-images/asset 13.jpeg', alt: 'Karate Image 6', title: 'Karate Image 6', description: 'Karate Image 6', category: 'competition' },
-        { src: '../../../../../assets/images/karate-images/asset 12.jpeg', alt: 'Karate Image 7', title: 'Karate Image 7', description: 'Karate Image 7', category: 'training' },
-        { src: '../../../../../assets/images/karate-images/asset 13.jpeg', alt: 'Karate Image 8', title: 'Karate Image 8', description: 'Karate Image 8', category: 'training' }
-    ];
+
     lightboxActive = false;
     currentLightboxImage = '';
     currentImageIndex = 0;
@@ -92,12 +83,12 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     currentImageDescription = '';
     galleryImages: any;
     private isotopeInstance: any;
-
+    filteredResults: any;
+    selectedFilterType: string | null = null;
     constructor(
         private fb: FormBuilder,
         private renderer: Renderer2,
         private galleryFacadeService: GalleryFacadeService,
-
         @Inject(PLATFORM_ID) private platformId: Object
     ) {
         this.contactSectionForm = this.fb.group({
@@ -215,19 +206,18 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     }
 
     preloadImages() {
-        // const totalImages = this.galleryImages.length;
-        // let loadedImages = 0;
-
-        // this.galleryImages.forEach((filename: any) => {
-        //     const img = new Image();
-        //     img.onload = () => {
-        //         loadedImages++;
-        //         if (loadedImages === totalImages) {
-        //             this.initializeIsotope();
-        //         }
-        //     };
-        //     img.filename = image.filename;
-        // });
+        const totalImages = this.galleryImages?.length;
+        let loadedImages = 0;
+        this.galleryImages?.forEach((filename: any) => {
+            const img = new Image();
+            img.onload = () => {
+                loadedImages++;
+                if (loadedImages === totalImages) {
+                    this.initializeIsotope();
+                }
+            };
+            img.src = filename.filename;
+        });
     }
 
     private initializeIsotope(): void {
@@ -310,8 +300,36 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
                 filename: `data:image/png;base64,${item.filename}`
             }));
             this.isLoading = false;
-            console.log("All Gallery Images ", this.galleryImages);
+            this.filteredResults = [...this.galleryImages]; // Initialize filteredResults with all images
             this.preloadImages();
         });
+    }
+
+    onFilterTypeChange(filterType: string) {
+        this.selectedFilterType = filterType === '*' ? null : filterType;
+        this.applyFilters();
+        this.initializeIsotope();
+
+    }
+
+    applyFilters() {
+        this.filteredResults = this.galleryImages.filter((result: any) => {
+            return (!this.selectedFilterType || result.galleryCategory === this.selectedFilterType);
+        });
+        this.isotopeInstance.arrange({ filter: this.selectedFilterType ? `.${this.selectedFilterType}` : '*' });
+        setTimeout(() => {
+            this.isotopeInstance.layout();
+        }, 100);
+    }
+
+    clearFilters() {
+        this.selectedFilterType = null;
+        this.filteredResults = [...this.galleryImages];
+        this.isotopeInstance.arrange({ filter: '*' });
+        setTimeout(() => {
+            this.isotopeInstance.layout();
+        }, 100);
+       this.initializeIsotope();
+
     }
 }

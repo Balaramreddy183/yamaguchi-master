@@ -30,7 +30,12 @@ export class adminGalleryComponent implements OnInit {
   submitted: boolean = false;
   isLoading: boolean = false;
   fileError: string = '';
-
+  categoriesdropdown: any[] = [
+    {id: 1, name: "training"},
+    {id: 2, name: "events"},
+    {id: 3, name: "competition"},
+    {id: 4, name: "achievements"},
+  ];
   constructor(
     private galleryFacadeService: GalleryFacadeService,
     private titleService: Title,
@@ -40,6 +45,7 @@ export class adminGalleryComponent implements OnInit {
       galleryImage: new FormControl(null, [Validators.required]),
       galleryTitle: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       galleryDescription: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
+      galleryCategory: new FormControl("", [Validators.required]),
     });
   }
 
@@ -66,12 +72,14 @@ export class adminGalleryComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log(this.galleryForm.value);
     if (this.galleryForm.valid && !this.fileError) {
       this.isLoading = true;
       const formData = new FormData();
       formData.append('galleryImage', this.galleryForm.get('galleryImage')?.value);
       formData.append('galleryTitle', this.galleryForm.get('galleryTitle')?.value);
       formData.append('galleryDescription', this.galleryForm.get('galleryDescription')?.value);
+      formData.append('galleryCategory', this.galleryForm.get('galleryCategory')?.value);
 
       this.galleryFacadeService.createGalleryImages(formData).subscribe(
         response => {
