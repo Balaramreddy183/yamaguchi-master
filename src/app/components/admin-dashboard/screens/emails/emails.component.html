@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+
+<div class="main-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive pt-3 ">
+                    <p class="title-text">View <span>Emails</span> Here</p>
+                    <button class="btn btn-primary mb-3">Download</button>
+                    <table class="table table-bordered  table-striped table-hover">
+                        <thead class="table-light ">
+                            <tr>
+                                <th scope="col">SN.O</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Phone</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider">
+                            <tr *ngFor="let emailItem of emails; let i = index">
+                                <th>{{i+1}}</th>
+                                <td class="title">{{emailItem?.name}}</td>
+                                <td>{{emailItem?.email}}</td>
+                                <td>{{emailItem?.subject}}</td>
+                                <td>{{emailItem?.message}}</td>
+                                <td>{{emailItem?.phone}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader-bg" *ngIf="isLoading">
+    <div class="loader"></div>
+</div>

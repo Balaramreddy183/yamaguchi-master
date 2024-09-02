@@ -3,7 +3,7 @@ import { Component, OnInit, HostListener, Renderer2, ElementRef, Inject } from '
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { EmailService } from '../../../../service/email/email.service';
+import { EmailService } from '../../../../service/email.service';
 import { AuthService } from '../../../../service/auth.service';
 
 @Component({

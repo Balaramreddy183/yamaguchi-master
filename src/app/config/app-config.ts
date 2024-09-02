@@ -25,4 +25,5 @@ isLoggedIn: 'Admin/IsLoggedIn',
 
     // mail endpoints
     sendMail: 'Mail/SendMail',
+    getEmails: 'Mail/GetEmails'
 }

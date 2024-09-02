@@ -12,6 +12,7 @@ import { adminGalleryComponent } from './components/admin-dashboard/screens/gall
 import { ContactUsComponent } from './components/website/screens/contact-us/contact-us.component';
 import { AdminLoginComponent } from './components/auth/admin-login/admin-login.component';
 import { AuthGuard } from './service/admin-auth.guard';
+import { EmailsComponent } from './components/admin-dashboard/screens/emails/emails.component';
 
 export const routes: Routes = [
     {
@@ -39,11 +40,14 @@ export const routes: Routes = [
         path: 'admin', 
         canActivate: [AuthGuard],
         children: [
-            {
+            { 
                 path: 'homepage', component: HomepageDashboardComponent
             },
             {
                 path: 'gallery', component: adminGalleryComponent
+            },
+            {
+                path: 'emails', component: EmailsComponent
             },
             {
                 path: 'events', component: EventsComponent

@@ -9,7 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit } from '@angular/core';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 import imagesLoaded from 'imagesloaded';
-import { EmailService } from '../../../../service/email/email.service';
+import { EmailService } from '../../../../service/email.service';
 
 @Component({
     selector: 'app-landingpage',
@@ -104,7 +104,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
-            this.preloadImages();
+          this.preloadImages();
         }
 
         this.loadGalleryImages();
@@ -154,7 +154,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         this.counters.forEach((counter, index) => {
             setTimeout(() => {
                 this.animateCounter(counter, duration, steps);
-                this.animateIcon(index);
+                //this.animateIcon(index);
             }, index * 200);
         });
     }
@@ -194,18 +194,18 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         }
     }
 
-    private animateIcon(index: number) {
-        const iconElement = this.countSection.nativeElement.querySelector(`[data-icon="${index}"]`);
-        if (iconElement) {
-            this.renderer.setStyle(iconElement, 'transform', 'scale(0) rotate(-180deg)');
-            this.renderer.setStyle(iconElement, 'opacity', '0');
-            setTimeout(() => {
-                this.renderer.setStyle(iconElement, 'transition', 'transform 0.5s, opacity 0.5s');
-                this.renderer.setStyle(iconElement, 'transform', 'scale(1) rotate(0deg)');
-                this.renderer.setStyle(iconElement, 'opacity', '1');
-            }, 100);
-        }
-    }
+    // private animateIcon(index: number) {
+    //     const iconElement = this.countSection.nativeElement.querySelector(`[data-icon="${index}"]`);
+    //     if (iconElement) {
+    //         this.renderer.setStyle(iconElement, 'transform', 'scale(0) rotate(-180deg)');
+    //         this.renderer.setStyle(iconElement, 'opacity', '0');
+    //         setTimeout(() => {
+    //             this.renderer.setStyle(iconElement, 'transition', 'transform 0.5s, opacity 0.5s');
+    //             this.renderer.setStyle(iconElement, 'transform', 'scale(1) rotate(0deg)');
+    //             this.renderer.setStyle(iconElement, 'opacity', '1');
+    //         }, 100);
+    //     }
+    // }
 
     preloadImages() {
         const totalImages = this.galleryImages?.length;
@@ -327,7 +327,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
                 filename: `data:image/png;base64,${item.filename}`
             }));
             this.filteredResults = [...this.galleryImages]; // Initialize filteredResults with all images
-            this.preloadImages();
+         this.preloadImages();
         });
     }
 
