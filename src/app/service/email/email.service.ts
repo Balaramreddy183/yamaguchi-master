@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmailService {
-  //private emailurl  = 'https://yamaguchi-backend.onrender.com/api/send-email';
-  private emailurl  = 'http://localhost:3000/Mail/SendMail';
+  private emailurl  = 'https://yamaguchi-backend.onrender.com/Mail/SendMail';
+ // private emailurl  = 'http://localhost:3000/Mail/SendMail';
   constructor(private http: HttpClient) { }
 
   sendEmail ( name:string, email:string, message:string, subject:string, phone:string) {

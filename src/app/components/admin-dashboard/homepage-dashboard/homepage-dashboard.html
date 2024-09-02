@@ -7,12 +7,13 @@
                 <div class="dashboard-sub-bg">
                     <h3 class=" dashboard-title">DASHBOARD</h3>
                     <div class="dashboard-card">
-                        <p>
+
+                        <p let gallery of gallery>
                             <i class="bi bi-camera"></i> Total Gallery Images :
-                            <strong>20</strong>
+                            <strong>{{gallery.length}}</strong>
                             <a class="btn  btn-outline-info btn-sm float-end ms-2" routerLink="/admin/gallery"> view</a>
                         </p>
-                        <p>
+                        <!-- <p>
                             <i class="bi bi-calendar4-event"></i> Total Upcoming Events :
                             <strong>5</strong>
                             <a class="btn btn-outline-info btn-sm float-end ms-2" routerLink="/admin/events">view</a>
@@ -21,7 +22,7 @@
                             <i class="bi bi-person"></i> Total Trainers :
                             <strong>3</strong>
                             <a class="btn  btn-outline-info btn-sm float-end ms-2" routerLink="/admin/trainers">view</a>
-                        </p>
+                        </p> -->
                         <!-- <p>
               <i class="bi bi-blockquote-left"></i>
               Total Testimonials :
