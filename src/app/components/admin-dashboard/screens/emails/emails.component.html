@@ -7,7 +7,6 @@
             <div class="col-12">
                 <div class="table-responsive pt-3 ">
                     <p class="title-text">View <span>Emails</span> Here</p>
-                    <button class="btn btn-primary mb-3">Download</button>
                     <table class="table table-bordered  table-striped table-hover">
                         <thead class="table-light ">
                             <tr>
@@ -38,6 +37,11 @@
     </div>
 </div>
 
+<div class="add-new-btn">
+    <a class="btn btn-success  float-end" (click)="downloadEmails()">
+        <i class="bi bi-download"></i> Download
+    </a>
+</div>
 <div class="loader-bg" *ngIf="isLoading">
     <div class="loader"></div>
 </div>
