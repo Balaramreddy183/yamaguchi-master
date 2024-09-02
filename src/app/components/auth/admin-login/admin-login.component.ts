@@ -3,12 +3,12 @@ import { AuthService } from '../../../service/auth.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule, HttpClientModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, HttpClientModule,RouterModule],
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.css']
 })

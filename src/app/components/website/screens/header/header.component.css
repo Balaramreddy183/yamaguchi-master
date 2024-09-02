@@ -311,6 +311,10 @@ a.header-contact-info:hover {
     transition: all 0.3s ease;
 }
 
+.nav-item .special-button {
+    outline: 2px solid #e80040;
+}
+
 .navbar-overlay {
     position: fixed;
     top: 0;
@@ -333,7 +337,7 @@ a.header-contact-info:hover {
     .nav-link:hover,
     .nav-link.active {
         background-color: #1a2f4e;
-        color: #ffffff !important;
+        color: #ffffff;
     }
 }
 

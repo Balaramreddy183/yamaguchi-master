@@ -258,7 +258,7 @@
                             <textarea class="input-field-textbox" placeholder="Message" formControlName="message"></textarea>
                         </div>
                         <div class="col-12 mt-3">
-                            <button class="btn contactus-button" [disabled]="true" (click)="sendContactSectionForm()">Send your
+                            <button class="btn contactus-button" [disabled]="contactSectionForm.invalid" (click)="sendContactSectionForm()">Send your
                                 message</button>
                         </div>
                     </div>

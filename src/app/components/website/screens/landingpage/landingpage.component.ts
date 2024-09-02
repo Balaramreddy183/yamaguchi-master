@@ -9,6 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit } from '@angular/core';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 import imagesLoaded from 'imagesloaded';
+import { EmailService } from '../../../../service/email/email.service';
 
 @Component({
     selector: 'app-landingpage',
@@ -20,7 +21,7 @@ import imagesLoaded from 'imagesloaded';
 export class LandingpageComponent implements OnInit, AfterViewInit {
 
     @ViewChild('countSection') countSection!: ElementRef;
-    isLoading = true;
+    isLoading = false;
     contactSectionForm!: FormGroup;
     counters = [
         { start: 0, end: 40, current: 0, text: 'YEARS EXPERIENCE' },
@@ -89,6 +90,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         private fb: FormBuilder,
         private renderer: Renderer2,
         private galleryFacadeService: GalleryFacadeService,
+        private emailService: EmailService,
         @Inject(PLATFORM_ID) private platformId: Object
     ) {
         this.contactSectionForm = this.fb.group({
@@ -283,7 +285,33 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     }
 
     sendContactSectionForm() {
-        console.log(this.contactSectionForm.value);
+        if (this.contactSectionForm.valid) {
+            console.log('Form Submitted', this.contactSectionForm.value);
+            this.isLoading = true;
+            this.emailService.sendEmail(
+                this.contactSectionForm.value.name,
+                this.contactSectionForm.value.email,
+                this.contactSectionForm.value.message,
+                this.contactSectionForm.value.subject,
+                this.contactSectionForm.value.phone
+            ).subscribe(
+                (res) => {
+                    this.isLoading = false;
+                    console.log('Email sent', res);
+                    this.contactSectionForm.reset();
+                    console.log('Form Reset');
+                    alert('Message sent successfully');
+                },
+                (error) => {
+                    console.log('Error sending email', error);
+                    this.isLoading = false;
+                    alert('Message not sent');
+                }
+            );
+        } else {
+            console.log('Form is not valid');
+            this.isLoading = false;
+        }
     }
 
     fallbackImage = 'https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80';
@@ -293,13 +321,11 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     }
 
     loadGalleryImages() {
-        this.isLoading = true;
         this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
             this.galleryImages = response.map((item: any) => ({
                 ...item,
                 filename: `data:image/png;base64,${item.filename}`
             }));
-            this.isLoading = false;
             this.filteredResults = [...this.galleryImages]; // Initialize filteredResults with all images
             this.preloadImages();
         });
