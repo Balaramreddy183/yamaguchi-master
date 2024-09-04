@@ -187,15 +187,15 @@
 
         <div class="gallery-filter">
             <button class="filter-btn active" (click)="clearFilters()">All</button>
-            <button class="filter-btn" (click)="onFilterTypeChange('training')">Training</button>
-            <button class="filter-btn" (click)="onFilterTypeChange('competition')">Competition</button>
-            <button class="filter-btn" (click)="onFilterTypeChange('events')">Events</button>
-            <button class="filter-btn" (click)="onFilterTypeChange('achievements')">Achievements</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('Training')">Training</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('Competition')">Competition</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('Events')">Events</button>
+            <button class="filter-btn" (click)="onFilterTypeChange('Achievements')">Achievements</button>
         </div>
 
         <div class="gallery-grid">
             <div class="gallery-item {{image.category}}" *ngFor="let image of filteredResults; let i = index">
-                <img loading="lazy" [src]="image.filename" [alt]="image.galleryTitle" (click)="openLightbox(i)">
+                <img loading="lazy" [src]="image?.filename || '../../../../../assets/images/nav_logo.jpg'" [alt]="image?.galleryTitle" (click)="openLightbox(i)">
             </div>
         </div>
     </div>

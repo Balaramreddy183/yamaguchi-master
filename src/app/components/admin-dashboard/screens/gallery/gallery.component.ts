@@ -31,10 +31,10 @@ export class adminGalleryComponent implements OnInit {
   isLoading: boolean = false;
   fileError: string = '';
   categoriesdropdown: any[] = [
-    {id: 1, name: "training"},
-    {id: 2, name: "events"},
-    {id: 3, name: "competition"},
-    {id: 4, name: "achievements"},
+    {id: 1, name: "Training"},
+    {id: 2, name: "Events"},
+    {id: 3, name: "Competition"},
+    {id: 4, name: "Achievements"},
   ];
   constructor(
     private galleryFacadeService: GalleryFacadeService,
@@ -44,7 +44,8 @@ export class adminGalleryComponent implements OnInit {
     this.galleryForm = new FormGroup({
       galleryImage: new FormControl(null, [Validators.required]),
       galleryTitle: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
-      galleryDescription: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
+      galleryDescription: new FormControl(""),
+     // galleryDescription: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
       galleryCategory: new FormControl("", [Validators.required]),
     });
   }

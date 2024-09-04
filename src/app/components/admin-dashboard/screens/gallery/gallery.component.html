@@ -25,7 +25,7 @@
                                     <img loading="lazy" [src]="galleryItem?.filename" [alt]="galleryItem?.galleryTitle" class="table-image">
                                 </td>
                                 <td class="title">{{galleryItem?.galleryTitle}}</td>
-                                <td class="description">{{galleryItem?.galleryDescription}}</td>
+                                <td class="description">{{galleryItem?.galleryDescription || 'No Description'}}</td>
                                 <td class="category">{{galleryItem?.galleryCategory}}</td>
                                 <td class="action-icons">
                                     <!-- <a class=" btn btn-sm btn-outline-warning">
