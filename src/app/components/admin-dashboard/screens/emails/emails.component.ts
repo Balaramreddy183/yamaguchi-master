@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EmailService } from '../../../../service/email.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-emails',
   standalone: true,
@@ -14,9 +15,14 @@ import { saveAs } from 'file-saver';
 export class EmailsComponent {
   emails: any[] = [];
   isLoading: boolean = false;
-  constructor(private emailService: EmailService) { }
+  constructor(
+    private emailService: EmailService,
+    private titleService:Title
+
+  ) { }
   ngOnInit() {
     this.loadEmail();
+    this.titleService.setTitle("Email - Yamaguchi Karate Academy")
   }
 
   loadEmail() {

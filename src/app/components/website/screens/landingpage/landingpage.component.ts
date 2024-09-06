@@ -10,6 +10,7 @@ import { AfterViewInit } from '@angular/core';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 import imagesLoaded from 'imagesloaded';
 import { EmailService } from '../../../../service/email.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-landingpage',
@@ -91,6 +92,8 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         private renderer: Renderer2,
         private galleryFacadeService: GalleryFacadeService,
         private emailService: EmailService,
+        private titleService: Title,
+
         @Inject(PLATFORM_ID) private platformId: Object
     ) {
         this.contactSectionForm = this.fb.group({
@@ -108,6 +111,8 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         }
 
         this.loadGalleryImages();
+        this.titleService.setTitle('Yamaguchi Karate Academy');
+
     }
 
     ngAfterViewInit() {

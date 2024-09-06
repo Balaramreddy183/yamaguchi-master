@@ -6,6 +6,7 @@ import { GalleryFacadeService } from '../../../facade/gallery.facade.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmailService } from '../../../service/email.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,15 @@ export class HomepageDashboardComponent implements OnInit {
   emails: any[] = [];
   constructor(
     private galleryFacadeService: GalleryFacadeService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private titleService:Title
   ) { }
 
   ngOnInit(): void {
     this.getGalleryImages();
     this.loadEmail();
+    this.titleService.setTitle('Dashboard-Yamaguchi Karate Academy');
+
   }
   getGalleryImages() {
     this.galleryFacadeService.getGalleryImages().subscribe((response: any) => {
