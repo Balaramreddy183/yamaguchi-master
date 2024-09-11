@@ -20,6 +20,9 @@
                         </thead>
 
                         <tbody class="table-group-divider">
+                            <tr *ngIf="emails.length === 0">
+                                <td colspan="6" class="text-center noDataText">No Emails Available</td>
+                            </tr>
                             <tr *ngFor="let emailItem of emails; let i = index">
                                 <th>{{i+1}}</th>
                                 <td class="title">{{emailItem?.name}}</td>
@@ -27,7 +30,6 @@
                                 <td>{{emailItem?.subject}}</td>
                                 <td>{{emailItem?.message}}</td>
                                 <td>{{emailItem?.phone}}</td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -37,7 +39,7 @@
     </div>
 </div>
 
-<div class="add-new-btn">
+<div class="add-new-btn" *ngIf="emails.length >0">
     <a class="btn btn-success  float-end" (click)="downloadEmails()">
         <i class="bi bi-download"></i> Download
     </a>

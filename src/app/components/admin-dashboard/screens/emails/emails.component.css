@@ -83,6 +83,13 @@ td {
     right: 5%;
 }
 
+.noDataText {
+    font-size: 18px;
+    color: #333333;
+    padding: 2em;
+    font-weight: bold;
+}
+
 
 /* loading */
 
