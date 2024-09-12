@@ -16,10 +16,10 @@ import { EmailsComponent } from './components/admin-dashboard/screens/emails/ema
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: 'home', pathMatch: 'full'
+        path: '', redirectTo: '', pathMatch: 'full'
     },
     {
-        path: 'home', component: HomeComponent
+        path: '', component: HomeComponent
     },
     // {
     //     path: 'about-us', component: AboutUsComponent

@@ -117,7 +117,7 @@ export class HeaderComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
-    this.router.navigate(['/home']).then(() => {
+    this.router.navigate(['/']).then(() => {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
