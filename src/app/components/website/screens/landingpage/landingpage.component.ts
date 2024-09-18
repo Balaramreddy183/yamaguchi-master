@@ -3,8 +3,6 @@ import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from '../header/header.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from 'express';
-import { HttpClientModule } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit } from '@angular/core';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
@@ -212,7 +210,10 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
     //     }
     // }
 
-    preloadImages() {
+ // ... existing code ...
+
+preloadImages() {
+    if (typeof window !== 'undefined' && typeof Image !== 'undefined') {
         const totalImages = this.galleryImages?.length;
         let loadedImages = 0;
         this.galleryImages?.forEach((filename: any) => {
@@ -226,6 +227,7 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
             img.src = filename.filename;
         });
     }
+}
 
     private initializeIsotope(): void {
         import('isotope-layout').then(Isotope => {

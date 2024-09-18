@@ -6,6 +6,7 @@
         <div class="heading">Sign In</div>
         <form [formGroup]="loginForm" class="form">
             <input formControlName="username" required class="input" type="text" placeholder="Username">
+
             <div class="password-container">
                 <input formControlName="password" required class="input" [type]="passwordFieldType" placeholder="Password">
                 <i class="fa-solid" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
@@ -16,7 +17,16 @@
     </div>
 </div>
 
-
 <div class="loader-bg" *ngIf="isLoading">
     <div class="loader"></div>
+</div>
+
+<div *ngFor="let toast of toastService.toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" [ngClass]="toast.classname">
+    <div class="toast-header">
+        <strong class="me-auto">Notification</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="toastService.remove(toast)"></button>
+    </div>
+    <div class="toast-body">
+        {{ toast.textOrTpl }}
+    </div>
 </div>

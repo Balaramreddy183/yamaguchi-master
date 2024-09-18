@@ -1,5 +1,5 @@
 .container-bg {
-    background-color: #1a2f4e;
+    /* background-color: #1a2f4e; */
     /* Background color */
     height: 100vh;
     display: flex;
@@ -10,11 +10,11 @@
 
 .container {
     max-width: 350px;
-    background: #ffffffaf;
+    background: #c0d9e7;
     /* Updated background color to white */
     border-radius: 40px;
     padding: 25px 35px;
-    border: 5px solid #555555;
+    border: 2px solid #555555;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 30px -20px;
     /* Lighter shadow */
     margin: 20px;
@@ -28,10 +28,11 @@
 
 .logo-container img {
     width: 100%;
-    height: 80px;
+    height: 100px;
     object-fit: contain;
     margin-bottom: 20px;
     border-radius: 20px;
+    mix-blend-mode: multiply;
 }
 
 .heading {
@@ -267,4 +268,15 @@
 
 .password-container .fa-solid:hover {
     color: #000000;
+}
+
+
+/* toast */
+
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050;
+    transition: opacity 0.5s ease-in-out;
 }
