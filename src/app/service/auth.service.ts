@@ -34,13 +34,6 @@ export class AuthService {
     );
   }
 
-  logout(): void {
-    this.localStorage.removeItem('authToken');
-    this.localStorage.removeItem('userDetails');
-    this.router.navigate(['/']);
-    
-  }
-
   isLoggedIn(): boolean {
     return !!this.localStorage.getItem('authToken');
   }

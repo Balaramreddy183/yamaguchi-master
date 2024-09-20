@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { EmailService } from '../../../../service/email.service';
 import { AuthService } from '../../../../service/auth.service';
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
   selector: 'app-header',
@@ -37,7 +38,8 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder,
     private emailService: EmailService,
     @Inject(ElementRef) private el: ElementRef,
-    private authService: AuthService
+    private authService: AuthService,
+    public toastService: ToastService
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -69,17 +71,18 @@ export class HeaderComponent implements OnInit {
           console.log('Email sent', res);
           this.contactForm.reset();
           console.log('Form Reset');
-          alert('Message sent successfully');
+          this.toastService.show('Message sent successfully', { classname: 'bg-success text-light', delay: 5000 });
         },
         (error) => {
           console.log('Error sending email', error);
           this.isLoading = false;
-          alert('Message not sent');
+          this.toastService.show('Message not sent', { classname: 'bg-danger text-light', delay: 5000 });
         }
       );
     } else {
       console.log('Form is not valid');
       this.isLoading = false;
+      this.toastService.show('Please fill all the fields', { classname: 'bg-danger text-light', delay: 5000 });
     }
   }
 

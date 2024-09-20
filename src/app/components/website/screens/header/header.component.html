@@ -96,7 +96,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-submit" (click)="sendMessage()" [disabled]="contactForm.invalid">Send Message</button>
+                <button type="button" class="btn btn-submit" (click)="sendMessage()">Send Message</button>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
 <nav class="navbar navbar-expand-lg bg-light border-bottom border-body sticky-top">
     <div class="container">
         <a class="navbar-brand" routerLink="/">
-            <img src="../../../../assets/images/nav_logo.jpg" alt="Ymca" class="nav-logo" loading="lazy">
+            <img src="../../../../../assets/images/nav_logo.ico" alt="Ymca" class="nav-logo" loading="lazy">
         </a>
         <button class="navbar-toggler" type="button" (click)="toggleNavbar($event)" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -153,4 +153,14 @@
 
 <div class="loader-bg" *ngIf="isLoading">
     <div class="loader"></div>
+</div>
+
+<div *ngFor="let toast of toastService.toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" [ngClass]="toast.classname">
+    <div class="toast-header">
+        <strong class="me-auto">Notification</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="toastService.remove(toast)"></button>
+    </div>
+    <div class="toast-body">
+        {{ toast.textOrTpl }}
+    </div>
 </div>

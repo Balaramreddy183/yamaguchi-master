@@ -9,6 +9,7 @@ import { GalleryFacadeService } from '../../../../facade/gallery.facade.service'
 import imagesLoaded from 'imagesloaded';
 import { EmailService } from '../../../../service/email.service';
 import { Title } from '@angular/platform-browser';
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
     selector: 'app-landingpage',
@@ -91,6 +92,8 @@ export class LandingpageComponent implements OnInit, AfterViewInit {
         private galleryFacadeService: GalleryFacadeService,
         private emailService: EmailService,
         private titleService: Title,
+        public toastService: ToastService,
+
 
         @Inject(PLATFORM_ID) private platformId: Object
     ) {
@@ -307,17 +310,18 @@ preloadImages() {
                     console.log('Email sent', res);
                     this.contactSectionForm.reset();
                     console.log('Form Reset');
-                    alert('Message sent successfully');
+                    this.toastService.show('Message sent successfully', { classname: 'bg-success text-light', delay: 5000 });
                 },
                 (error) => {
                     console.log('Error sending email', error);
                     this.isLoading = false;
-                    alert('Message not sent');
+                    this.toastService.show('Message not sent', { classname: 'bg-danger text-light', delay: 5000 });
                 }
             );
         } else {
             console.log('Form is not valid');
             this.isLoading = false;
+            this.toastService.show('Please fill all the fields', { classname: 'bg-danger text-light', delay: 5000 });
         }
     }
 

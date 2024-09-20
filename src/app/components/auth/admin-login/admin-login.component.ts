@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { ToastService } from '../../../service/toast.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-login',
@@ -19,14 +18,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.css'],
-  animations: [
-    trigger('fade', [
-      state('void', style({ opacity: 0 })),
-      transition(':enter, :leave', [
-        animate('0.5s ease-in-out')
-      ])
-    ])
-  ]
 })
 export class AdminLoginComponent {
   loginForm: FormGroup;
@@ -62,17 +53,21 @@ export class AdminLoginComponent {
       this.authService.login(credentials).subscribe(response => {
        
         if (response) {         
-          this.toastService.show('Login successful!', { classname: 'bg-success text-light', delay: 10000 });
+          this.toastService.show('Login successful!', { classname: 'bg-success text-light', delay: 1000 });
+          this.loginForm.reset();
           setTimeout(() => {
             this.router.navigate(['/admin/homepage'] , { replaceUrl: true });
           }, 1000);
           this.isLoading = false;
         } else {
-          this.toastService.show('Invalid username or password', { classname: 'bg-danger text-light', delay: 5000 });
+          this.toastService.show('Invalid username or password', { classname: 'bg-danger text-light', delay: 1000 });
           this.errorMessage = 'Invalid username or password';
           this.isLoading = false;
         }
       });
+    }
+    else{
+      this.toastService.show('Please enter a username and password', { classname: 'bg-danger text-light', delay: 1000 });
     }
   }
 }

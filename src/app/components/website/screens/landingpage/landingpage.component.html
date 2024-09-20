@@ -258,7 +258,7 @@
                             <textarea class="input-field-textbox" placeholder="Message" formControlName="message"></textarea>
                         </div>
                         <div class="col-12 mt-3">
-                            <button class="btn contactus-button" [disabled]="contactSectionForm.invalid" (click)="sendContactSectionForm()">Send your
+                            <button class="btn contactus-button" (click)="sendContactSectionForm()">Send your
                                 message</button>
                         </div>
                     </div>
@@ -292,4 +292,14 @@
 
 <div class="loader-bg" *ngIf="isLoading">
     <div class="loader"></div>
+</div>
+
+<div *ngFor="let toast of toastService.toasts" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" [ngClass]="toast.classname">
+    <div class="toast-header">
+        <strong class="me-auto">Notification</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="toastService.remove(toast)"></button>
+    </div>
+    <div class="toast-body">
+        {{ toast.textOrTpl }}
+    </div>
 </div>

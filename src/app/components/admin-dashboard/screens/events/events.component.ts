@@ -5,7 +5,6 @@ import { response } from 'express';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GetService } from '../../../../service/apis/get.service';
 
 @Component({
   selector: 'app-events',
@@ -26,7 +25,7 @@ export class EventsComponent implements OnInit {
 
   submitted: boolean = false;
 
-  constructor(public productGetApi: GetService) {
+  constructor() {
     this.eventForm = new FormGroup({
       image: new FormControl('', Validators.required),
       title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -38,10 +37,7 @@ export class EventsComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.productGetApi.getEvents().subscribe((response: any) => {
-      this.events = response.products;
 
-    })
   }
   onSubmit() {
     this.submitted = true;

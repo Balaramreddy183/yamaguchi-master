@@ -178,3 +178,14 @@
         box-shadow: .2em -.2em 0 0 currentcolor;
     }
 }
+
+
+/* toast */
+
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050;
+    transition: opacity 0.5s ease-in-out;
+}
