@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GalleryFacadeService } from '../../../../facade/gallery.facade.service';
 import * as bootstrap from 'bootstrap';
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
   selector: 'app-gallery',
@@ -39,7 +40,9 @@ export class adminGalleryComponent implements OnInit {
   constructor(
     private galleryFacadeService: GalleryFacadeService,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    public toastService: ToastService,
+
   ) {
     this.galleryForm = new FormGroup({
       galleryImage: new FormControl(null, [Validators.required]),
@@ -68,6 +71,7 @@ export class adminGalleryComponent implements OnInit {
       }));
       this.isLoading = false;
       console.log("All Gallery Images ", this.gallery);
+      this.toastService.show('Gallery Images Loaded Successfully', { classname: 'bg-success text-light', delay: 1000 });
     });
   }
 
@@ -90,15 +94,18 @@ export class adminGalleryComponent implements OnInit {
           this.submitted = false;
           this.resetFileInput();
           this.isLoading = false;
-          alert("Gallery Image Added Successfully");
+          this.toastService.show('Gallery Image Added Successfully', { classname: 'bg-success text-light', delay: 5000 });
           this.closeModal(); // Close the modal after successful submission
         },
         error => {
           console.error('HTTP Error:', error);
-          alert("Gallery Image Added Failed");
+          this.toastService.show('Gallery Image Added Failed', { classname: 'bg-danger text-light', delay: 5000 });
           this.isLoading = false;
         }
       );
+    }
+    else{
+      this.toastService.show('Please fill all the fields', { classname: 'bg-danger text-light', delay: 5000 });
     }
   }
 
