@@ -78,6 +78,25 @@
     padding: 5px;
 }
 
+.carousel-indicators {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-indicators button {
+    border-radius: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: #b50032;
+    border: none;
+}
+
+.carousel-indicators button.active {
+    background-color: #e80040;
+    width: 50px;
+}
+
 @media (max-width: 599px) {
     /* Your CSS styles for small devices (up to 599px)  here */
     .one-title {
@@ -778,7 +797,7 @@ svg {
 
 .lightbox {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -786,7 +805,7 @@ svg {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1200;
 }
 
 .lightbox-content {
@@ -797,7 +816,7 @@ svg {
 
 .lightbox-content img {
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 60vh;
     object-fit: contain;
 }
 
@@ -831,7 +850,7 @@ svg {
     border-radius: 5px;
     padding: 10px;
     font-family: "open sans", serif;
-    font-size: 15px;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.7;
     cursor: pointer;

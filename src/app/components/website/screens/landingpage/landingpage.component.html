@@ -1,18 +1,24 @@
-<div id="landingpagecarousel" class="carousel slide" data-bs-ride="carousel">
+<div id="landingpagecarousel" class="carousel slide " data-bs-ride="carousel">
+    <div class="carousel-indicators d-none d-md-block">
+        <button type="button" data-bs-target="#landingpagecarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#landingpagecarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#landingpagecarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
     <div class="carousel-inner">
-        <div class="carousel-item active one">
+        <div class="carousel-item active one" data-bs-interval="2000">
             <img src="../../assets/images/karate-images/carousel-1.jpeg" class="d-none d-md-block  w-100" alt="..." loading="lazy">
             <img src="../../assets/images/karate-images/carousel-2 - Copy.jpeg" class="d-block d-md-none  w-100" alt="..." loading="lazy">
             <div class="ong-sub">
                 <p class="one-title">UNLEASH YOUR POTENTIAL</p>
                 <p class="one-sub-title">TRAIN WITH THE BEST</p>
                 <p class="one-description">Join us at Yamaguchi Karate Academy and transform your life with the power of martial arts. Our expert instructors are here to guide you every step of the way.</p>
-                <button class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button class="btn contact-btn">
                     Contact
                 </button>
             </div>
         </div>
-        <div class="carousel-item two">
+        <div class="carousel-item two" data-bs-interval="3000">
             <img src="../../assets/images/karate-images/carousel-2.jpeg" class="d-none d-md-block  w-100" alt="..." loading="lazy">
             <img src="../../assets/images/karate-images/carousel1-mobile.jpeg" class="d-block d-md-none  w-100" alt="..." loading="lazy">
             <div class="two-sub">
@@ -24,11 +30,11 @@
                     <p class="one-description">With over 40 years of excellence, our academy has produced thousands of champions. Be a part of our legacy and achieve greatness.</p>
                 </div>
                 <div class="d-flex flex-row justify-content-center">
-                    <button class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button>
+                    <button class="btn contact-btn">Contact</button>
                 </div>
             </div>
         </div>
-        <div class="carousel-item three">
+        <div class="carousel-item three" data-bs-interval="2000">
             <img src="../../assets/images/karate-images/carousel-3.jpeg" class="d-none d-md-block  w-100" alt="..." loading="lazy">
             <img src="../../assets/images/karate-images/carousel3-mobile.jpeg" class="d-block d-md-none  w-100" alt="..." loading="lazy">
             <div class="three-sub">
@@ -41,7 +47,7 @@
                 </div>
 
                 <div class="d-flex flex-row justify-content-end">
-                    <button class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button>
+                    <button class="btn contact-btn">Contact</button>
                 </div>
             </div>
         </div>
@@ -104,6 +110,7 @@
                 <div class="col-12 col-lg-4 aboutus-caption-buttons-bg ">
                     <button class=" btn aboutus-caption-buttons me-3 ">View more</button>
                     <button class="btn aboutus-caption-buttons">Register now</button>
+                    <!-- <button class="btn aboutus-caption-buttons" data-bs-toggle="modal" data-bs-target="#exampleModal">Register now</button> -->
                 </div>
 
             </div>
@@ -195,7 +202,8 @@
 
         <div class="gallery-grid">
             <div class="gallery-item {{image.category}}" *ngFor="let image of filteredResults; let i = index">
-                <img loading="lazy" [src]="image?.filename || '../../../../../assets/images/nav_logo.jpg'" [alt]="image?.galleryTitle" (click)="openLightbox(i)">
+                <img loading="lazy" [src]="image?.filename || '../../../../../assets/images/nav_logo.jpg'" [alt]="image?.galleryTitle">
+                <!--  add this function for modal like images (click)="openLightbox(i)" -->
             </div>
         </div>
     </div>
