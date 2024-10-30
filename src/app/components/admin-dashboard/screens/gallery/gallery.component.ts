@@ -25,6 +25,8 @@ import { ToastService } from '../../../../service/toast.service';
 })
 export class adminGalleryComponent implements OnInit {
   @ViewChild('staticBackdrop') staticBackdrop!: ElementRef;
+  @ViewChild('closeModalButton', { static: false }) closeModalButton!: ElementRef<HTMLButtonElement>;
+
 
   gallery: any;
   galleryForm: FormGroup;
@@ -95,7 +97,7 @@ export class adminGalleryComponent implements OnInit {
           this.resetFileInput();
           this.isLoading = false;
           this.toastService.show('Gallery Image Added Successfully', { classname: 'bg-success text-light', delay: 5000 });
-          this.closeModal(); // Close the modal after successful submission
+          this.closeModalButton.nativeElement.click();
         },
         error => {
           console.error('HTTP Error:', error);
@@ -152,9 +154,5 @@ export class adminGalleryComponent implements OnInit {
     );
   }
 
-  closeModal() {
-    // const modalElement = this.staticBackdrop.nativeElement;
-    // const modalInstance = new bootstrap.Modal(modalElement);
-    // modalInstance.hide();
-  }
+ 
 }
