@@ -19,6 +19,12 @@ isLoggedIn: 'Admin/IsLoggedIn',
     updateGalleryImage: 'Gallery/UpdateGalleryImage',
     deleteGalleryImage: 'Gallery/DeleteGalleryImage',
 
+    // trainer endpoints
+    getAllTrainerDetails: 'TrainerDetails/GetAllTrainerDetails',
+    createTrainerDetails: 'TrainerDetails/CreateTrainerDetails',
+    updateTrainerDetails: 'TrainerDetails/UpdateTrainerDetails',
+    deleteTrainerDetails: 'TrainerDetails/DeleteTrainerDetails',
+
     // total visits endpoints
     getTotalVisits: 'TotalVisits/GetTotalVisits',
     createTotalVisits: 'TotalVisits/UpdateTotalVisits', 

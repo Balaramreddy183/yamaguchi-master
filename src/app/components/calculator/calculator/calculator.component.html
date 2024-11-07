@@ -1,0 +1,62 @@
+<div class="main-bg-container">
+    <div class="calculator-container container mt-5">
+        <div class="row">
+            <h2 class="text-center mb-4">Interest Calculator</h2>
+            <div class="col-12 col-md-6">
+                <form (ngSubmit)="calculateInterest()" class="needs-validation" novalidate>
+                    <div class="form-group mb-3">
+                        <label for="principal">Loan Amount (in Rupees):</label>
+                        <input type="number" id="principal" [(ngModel)]="principal" name="principal" class="form-control" required>
+                    </div>
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-md-5">
+                            <div class="form-group mb-3">
+                                <label for="ratePerHundred">Interest (in Rupees):</label>
+                                <input type="number" id="ratePerHundred" [(ngModel)]="ratePerHundred" name="ratePerHundred" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <strong>(or)</strong>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group mb-3">
+                                <label for="ratePercentage">Interest Rate (%):</label>
+                                <input type="number" id="ratePercentage" [(ngModel)]="ratePercentage" name="ratePercentage" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-md-2">
+                            <div class="form-group mb-3">
+                                <label for="time">Time (M):</label>
+                                <input type="number" id="time" [(ngModel)]="time" name="time" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="startDate">Start Date:</label>
+                                <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" class="date-picker form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label for="endDate">End Date:</label>
+                                <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
+                <div *ngIf="interestInRupees || maturityAmount" class="result mt-4">
+                    <p><strong>Loan Amount:</strong> {{ principal | currency:'INR' }}</p>
+                    <p><strong>Total Tenure:</strong> {{ totalTenureMonths }} months {{ totalTenureDays }} days</p>
+                    <p><strong>Interest Amount:</strong> {{ interestInRupees | currency:'INR' }}</p>
+                    <p><strong>Total Maturity Amount:</strong> {{ maturityAmount | currency:'INR' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

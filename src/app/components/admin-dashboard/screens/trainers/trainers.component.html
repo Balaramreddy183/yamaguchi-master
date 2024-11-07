@@ -18,59 +18,20 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
+                            <tr *ngFor="let trainer of trainers; let i = index">
+                                <th scope="row">{{i+1}}</th>
                                 <td>
-                                    <img src="../../../assets/images/karate-images/asset 11.jpeg" alt="image1" class="table-image">
+                                    <img [src]="trainer.trainerImageUrl" [alt]="trainer.trainerName" class="table-image">
                                 </td>
-                                <td>R.K Krishna</td>
-                                <td>Grand Master</td>
-                                <td>30 Years</td>
+                                <td>{{trainer.trainerName}}</td>
+                                <td>{{trainer.trainerQualification}}</td>
+                                <td>{{trainer.trainerExperience}} Years</td>
                                 <td class="action-icons">
-                                    <a class=" btn btn-sm btn-outline-warning">
+                                    <a class="btn btn-sm btn-outline-warning">
                                         Edit <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a class=" btn btn-sm btn-outline-danger">
-                                        Delete
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>
-                                    <img src="../../../assets/images/karate-images/asset 10.jpeg" alt="image1" class="table-image">
-                                </td>
-                                <td>Krishna</td>
-                                <td>Master Trainer</td>
-                                <td>10 years</td>
-                                <td class="action-icons">
-                                    <a class=" btn btn-sm btn-outline-warning">
-                                        Edit
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class=" btn btn-sm btn-outline-danger">
-                                        Delete
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>
-                                    <img src="../../../assets/images/karate-images/asset 9.jpeg" alt="image1" class="table-image">
-                                </td>
-                                <td>Ravi </td>
-                                <td>Champion</td>
-                                <td>25 Years</td>
-                                <td class="action-icons">
-                                    <a class=" btn btn-sm btn-outline-warning">
-                                        Edit
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a class=" btn btn-sm btn-outline-danger">
-                                        Delete
-                                        <i class="bi bi-trash"></i>
+                                    <a class="btn btn-sm btn-outline-danger" (click)="deleteTrainer(trainer._id)">
+                                        Delete <i class="bi bi-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -99,14 +60,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="sub-modal-bg" [formGroup]="trainersForm">
+                <form class="sub-modal-bg" [formGroup]="trainersForm" enctype="multipart/form-data">
                     <div>
                         <label for="formFile" class="form-label">Upload Trainer Image:</label>
-                        <input class="form-control" type="file" id="formFile" formControlName="trainerImage">
+                        <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
+                        <div class="text-danger" *ngIf="fileError">{{ fileError }}</div>
                         <div class="text-danger" *ngIf="trainersForm.controls['trainerImage'].touched && trainersForm.controls['trainerImage'].invalid">
                             <span *ngIf="trainersForm.controls['trainerImage'].errors?.['required']">Image is required</span>
                         </div>
-
                     </div>
                     <div>
                         <label for="Title" class="form-label">Trainer Name:</label>
@@ -115,7 +76,6 @@
                             <span *ngIf="trainersForm.controls['trainerName'].errors?.['required']">Name is required</span>
                             <span *ngIf="trainersForm.controls['trainerName'].errors?.['minlength']">Name must be at least 3 characters</span>
                             <span *ngIf="trainersForm.controls['trainerName'].errors?.['maxlength']">Name must be at most 50 characters long</span>
-
                         </div>
                     </div>
                     <div>
@@ -126,7 +86,6 @@
                             <span *ngIf="trainersForm.controls['trainerQualification'].errors?.['minlength']">Qualification must be at least 3 characters</span>
                         </div>
                     </div>
-
                     <div>
                         <label for="trainer-experience" class="form-label">Trainer Experience:</label>
                         <input class="form-control" type="number" placeholder="Trainer Experience in Years" formControlName="trainerExperience">
@@ -136,19 +95,16 @@
                             <span *ngIf="trainersForm.controls['trainerExperience'].errors?.['maxlength']">Experience must be at most 99 years</span>
                         </div>
                     </div>
-                    <div>
-
-                    </div>
-
-
-
-
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary ">Add</button>
+                <button type="submit" class="btn btn-primary" (click)="addTrainer()">Add</button>
             </div>
         </div>
     </div>
+</div>
+
+<div class="loader-bg" *ngIf="isLoading">
+    <div class="loader"></div>
 </div>

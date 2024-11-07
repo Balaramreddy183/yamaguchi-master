@@ -2,4 +2,4 @@
    Disallow: /admin/
    Allow: /
 
-   Sitemap: https://www.yamaguchikarate.in/sitemap.xml
+   Sitemap: https://yamaguchikarate.in/sitemap.xml

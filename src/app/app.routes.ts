@@ -13,6 +13,7 @@ import { ContactUsComponent } from './components/website/screens/contact-us/cont
 import { AdminLoginComponent } from './components/auth/admin-login/admin-login.component';
 import { AuthGuard } from './service/admin-auth.guard';
 import { EmailsComponent } from './components/admin-dashboard/screens/emails/emails.component';
+import { CalculatorComponent } from './components/calculator/calculator/calculator.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,9 @@ export const routes: Routes = [
     },
     {
         path: '', component: HomeComponent
+    },
+    {
+        path: 'calculator', component: CalculatorComponent
     },
     // {
     //     path: 'about-us', component: AboutUsComponent
@@ -33,6 +37,7 @@ export const routes: Routes = [
     // {
     //     path:'contact-us', component:ContactUsComponent
     // },
+   
     {
         path: 'admin/login', component: AdminLoginComponent
     },
@@ -63,4 +68,6 @@ export const routes: Routes = [
     {
         path: '**', component: HomeComponent
     }
+
+    
 ];
