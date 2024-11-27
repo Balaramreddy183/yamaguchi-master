@@ -37,7 +37,7 @@ export class AdminLoginComponent {
     }
 
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -60,14 +60,14 @@ export class AdminLoginComponent {
           }, 1000);
           this.isLoading = false;
         } else {
-          this.toastService.show('Invalid username or password', { classname: 'bg-danger text-light', delay: 1000 });
-          this.errorMessage = 'Invalid username or password';
+          this.toastService.show('Invalid email or password', { classname: 'bg-danger text-light', delay: 1000 });
+          this.errorMessage = 'Invalid email or password';
           this.isLoading = false;
         }
       });
     }
     else{
-      this.toastService.show('Please enter a username and password', { classname: 'bg-danger text-light', delay: 1000 });
+      this.toastService.show('Please enter a email and password', { classname: 'bg-danger text-light', delay: 1000 });
     }
   }
 }

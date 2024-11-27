@@ -2,7 +2,7 @@ export const AppConfig = {
 
 //admin endpoints
 //login
-login: 'Admin/login',
+login: 'api/admin/AdminLogin',
 
 //logout
 logout: 'Admin/Logout',
