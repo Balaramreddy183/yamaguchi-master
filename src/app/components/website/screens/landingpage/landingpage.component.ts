@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
-import { HeaderComponent } from '../header/header.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
@@ -16,7 +15,7 @@ import { ToastService } from '../../../../service/toast.service';
     standalone: true,
     templateUrl: './landingpage.component.html',
     styleUrl: './landingpage.component.css',
-    imports: [FooterComponent, HeaderComponent, FormsModule, ReactiveFormsModule, CommonModule],
+    imports: [FooterComponent, FormsModule, ReactiveFormsModule, CommonModule],
 })
 export class LandingpageComponent implements OnInit, AfterViewInit {
 
