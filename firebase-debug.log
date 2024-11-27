@@ -1,0 +1,36 @@
+[debug] [2024-11-27T11:27:10.904Z] ----------------------------------------------------------------------
+[debug] [2024-11-27T11:27:10.908Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\balar\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-11-27T11:27:10.908Z] CLI Version:   13.24.0
+[debug] [2024-11-27T11:27:10.909Z] Platform:      win32
+[debug] [2024-11-27T11:27:10.909Z] Node Version:  v20.10.0
+[debug] [2024-11-27T11:27:10.909Z] Time:          Wed Nov 27 2024 16:57:10 GMT+0530 (India Standard Time)
+[debug] [2024-11-27T11:27:10.910Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-27T11:27:10.999Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-27T11:27:11.000Z] > authorizing via signed-in user (balaramreddy473@gmail.com)
+[debug] [2024-11-27T11:27:11.000Z] [iam] checking project yamaguchi-1895a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-11-27T11:27:11.002Z] Checked if tokens are valid: false, expires at: 1732624850703
+[debug] [2024-11-27T11:27:11.002Z] Checked if tokens are valid: false, expires at: 1732624850703
+[debug] [2024-11-27T11:27:11.002Z] > refreshing access token with scopes: []
+[debug] [2024-11-27T11:27:11.005Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-11-27T11:27:11.005Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-11-27T11:27:11.254Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-11-27T11:27:11.255Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-11-27T11:27:11.265Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/yamaguchi-1895a:testIamPermissions [none]
+[debug] [2024-11-27T11:27:11.265Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/yamaguchi-1895a:testIamPermissions x-goog-quota-user=projects/yamaguchi-1895a
+[debug] [2024-11-27T11:27:11.266Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/yamaguchi-1895a:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-27T11:27:11.806Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/yamaguchi-1895a:testIamPermissions 200
+[debug] [2024-11-27T11:27:11.806Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/yamaguchi-1895a:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-27T11:27:11.807Z] Checked if tokens are valid: true, expires at: 1732710430255
+[debug] [2024-11-27T11:27:11.807Z] Checked if tokens are valid: true, expires at: 1732710430255
+[debug] [2024-11-27T11:27:11.807Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/yamaguchi-1895a [none]
+[debug] [2024-11-27T11:27:12.598Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/yamaguchi-1895a 200
+[debug] [2024-11-27T11:27:12.598Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/yamaguchi-1895a {"projectId":"yamaguchi-1895a","projectNumber":"80815097593","displayName":"Yamaguchi","name":"projects/yamaguchi-1895a","resources":{"hostingSite":"yamaguchi-1895a"},"state":"ACTIVE","etag":"1_f890a82a-b482-443b-9c3a-37d833661de2"}
+[info] 
+[info] === Deploying to 'yamaguchi-1895a'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-11-27T11:27:12.605Z] Checked if tokens are valid: true, expires at: 1732710430255
+[debug] [2024-11-27T11:27:12.605Z] Checked if tokens are valid: true, expires at: 1732710430255
+[debug] [2024-11-27T11:27:12.606Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/yamaguchi-1895a/versions [none]
+[debug] [2024-11-27T11:27:12.606Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/yamaguchi-1895a/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
