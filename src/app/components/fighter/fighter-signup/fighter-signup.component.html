@@ -1,0 +1,115 @@
+<div class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Join the Fight, Master Your Skills</h1>
+      <p class="lead">Embark on a journey to become a true martial artist</p>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="signup-form">
+          <h2 class="text-center mb-4">Start Your Journey to Black Belt Today!</h2>
+          
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" class="form-control" id="fullName" formControlName="fullName"
+               >
+              <!-- <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
+                <div *ngIf="f.fullName.errors.required">Full name is required</div>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" formControlName="email"
+              >
+              <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Enter a valid email address</div>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Contact Number</label>
+              <input type="tel" class="form-control" id="phone" formControlName="phone"
+               >
+              <!-- <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required">Contact number is required</div>
+              </div>-->
+            </div> 
+
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" class="form-control" id="age" formControlName="age"
+               >
+              <!-- <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                <div *ngIf="f.age.errors.required">Age is required</div>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Martial Arts Experience</label>
+              <select class="form-control" id="experience" formControlName="experience">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timeSlot">Preferred Training Slot</label>
+              <select class="form-control" id="timeSlot" formControlName="timeSlot">
+                <option value="morning">Morning (6:00 AM - 8:00 AM)</option>
+                <option value="afternoon">Afternoon (2:00 PM - 4:00 PM)</option>
+                <option value="evening">Evening (6:00 PM - 8:00 PM)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password"
+           >
+              <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+              >
+              <!-- <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.confirmPassword.errors.matching">Passwords must match</div>
+              </div> -->
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Sign Up Now</button>
+
+            <div class="text-center mt-4">
+              <p class="mb-0">Already have an account? 
+                <a class="login-link">Login here</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto text-center">
+          <h3 class="mb-4">What Our Students Say</h3>
+          <blockquote class="blockquote">
+            <p class="mb-0">"Training here has transformed not just my physical abilities, but my entire approach to life. The discipline and respect I've learned are priceless."</p>
+            <footer class="blockquote-footer text-white">John Doe, Black Belt</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>

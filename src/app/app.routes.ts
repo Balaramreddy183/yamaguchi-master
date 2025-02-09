@@ -14,6 +14,8 @@ import { AdminLoginComponent } from './components/auth/admin-login/admin-login.c
 import { AuthGuard } from './service/admin-auth.guard';
 import { EmailsComponent } from './components/admin-dashboard/screens/emails/emails.component';
 import { CalculatorComponent } from './components/calculator/calculator/calculator.component';
+import { FighterLoginComponent } from './components/fighter/fighter-login/fighter-login.component';
+import { FighterSignupComponent } from './components/fighter/fighter-signup/fighter-signup.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +44,12 @@ export const routes: Routes = [
         path: 'admin/login', component: AdminLoginComponent
     },
     {
+        path: 'fighter/signup', component: FighterSignupComponent
+    },
+    {
+        path: 'fighter/login', component: FighterLoginComponent
+    },
+    {
         path: 'admin', 
         canActivate: [AuthGuard],
         children: [
@@ -67,7 +75,8 @@ export const routes: Routes = [
     },
     {
         path: '**', component: HomeComponent
-    }
+    },
+   
 
     
 ];

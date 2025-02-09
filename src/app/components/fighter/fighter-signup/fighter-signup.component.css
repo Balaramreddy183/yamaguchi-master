@@ -1,0 +1,107 @@
+root {
+    --primary: #e80040;
+    --secondary: #b50032;
+    --dark-blue: #1a2f4e;
+    --gray: #808080;
+    --white: #ffffff;
+    --black: #000000;
+  }
+  
+  body {
+    background-color: #f8f9fa;
+    color: var(--dark-blue);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-section {
+    background: linear-gradient(rgba(26, 47, 78, 0.8), rgba(26, 47, 78, 0.8)),
+      url('https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    padding: 6rem 0;
+  }
+  
+  .signup-form, .login-form {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial-section {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 3rem 0;
+  }
+  
+  .form-control {
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(232, 0, 64, 0.25);
+  }
+  
+  .forgot-password {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password:hover {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .signup-link, .login-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .signup-link:hover, .login-link:hover {
+    color: var(--secondary);
+    text-decoration: none;
+  }
+  
+  .footer {
+    background-color: var(--white);
+    margin-top: auto;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group label i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+  }
+  
+  .invalid-feedback {
+    font-size: 0.875rem;
+  }

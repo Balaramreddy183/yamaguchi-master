@@ -1,0 +1,56 @@
+<div class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Welcome Back, Warrior!</h1>
+      <p class="lead">Continue your journey to mastery</p>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="login-form">
+          <h2 class="text-center mb-4">Login to Your Account</h2>
+          
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">
+                <i class="fas fa-envelope"></i> Email Address
+              </label>
+              <input type="email" class="form-control" id="email" formControlName="email"
+                placeholder="Enter your email"
+               >
+             
+            </div>
+
+            <div class="form-group">
+              <label for="password">
+                <i class="fas fa-lock"></i> Password
+              </label>
+              <input type="password" class="form-control" id="password" formControlName="password"
+                placeholder="Enter your password"                  >
+             
+            </div>
+
+            <div class="text-right mb-3">
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+
+            <div class="text-center mt-4">
+              <p class="mb-0">Don't have an account? 
+                <a class="signup-link">Sign up now</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">"The journey of a thousand miles begins with a single step." - Lao Tzu</p>
+      <small class="text-muted">© 2024 Karate Academy. All rights reserved.</small>
+    </div>
+  </footer>
